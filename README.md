@@ -37,3 +37,11 @@ Python, TensorFlow, Pandas, NumPy, Scikit-learn, Matplotlib, Colab, GitHub
 ## About
 All projects are built and maintained by Retro099.
 They reflect ongoing experiments and client-ready implementations.
+
+---
+
+## 📂 Projects Index
+
+- [Project 01 – CNN](Project-01-CNN/README.md)
+
+*(Add new projects here later, e.g. Project 02 – NLP, Project 03 – Data Analysis)*

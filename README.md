@@ -45,3 +45,11 @@ They reflect ongoing experiments and client-ready implementations.
 - [Project 01 – CNN](Project-01-CNN/README.md)
 
 *(Add new projects here later, e.g. Project 02 – NLP, Project 03 – Data Analysis)*
+
+---
+
+## 📂 Projects Index
+
+- [Project 01 – CNN](Project-01-CNN/README.md)
+
+*(Add new projects here later, e.g. Project 02 – NLP, Project 03 – Data Analysis)*

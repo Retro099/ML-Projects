@@ -1,55 +1,25 @@
-# ML Projects Portfolio
+# 🚀 Machine Learning Projects Portfolio
 
-Welcome to my collection of Machine Learning and Data Science projects.
-This repository is both a learning archive and a showcase for my freelance work.
-
----
-
-## Repository Structure
-ML-Projects/
-├── Project-01-CNN/
-├── Project-02-NLP/
-├── Project-03-Forecasting/
-└── README.md  (this file)
-
-Each folder represents an independent project with:
-- notebooks/  → Colab or Jupyter notebooks
-- src/        → Python scripts and modules
-- data_sample/ → sample data
-- results/     → charts, metrics, outputs
+Welcome to my AI/ML project collection. Each folder below links to a complete,
+documented project ready to run in Google Colab.
 
 ---
 
-## Featured Projects
-| Project | Description |
-|----------|-------------|
-| Project-01-CNN | Image classification using Convolutional Neural Networks |
-| Project-02-NLP | Text sentiment analysis using LSTM |
-| Project-03-Forecasting | Predictive model for time-series data |
+## 🔹 [Customer Churn Prediction](Customer_Churn_Prediction/)
+Predicts telecom customer churn using ML models.  
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Status](https://img.shields.io/badge/Status-Active-success)
+
+**Tech Stack:** pandas, scikit-learn, TensorFlow  
+**Focus:** preprocessing, model evaluation, metrics
 
 ---
 
-## Tools & Technologies
-Python, TensorFlow, Pandas, NumPy, Scikit-learn, Matplotlib, Colab, GitHub
+*(More projects coming soon — CNN image classifier, NLP sentiment model, etc.)*
 
 ---
 
-## About
-All projects are built and maintained by Retro099.
-They reflect ongoing experiments and client-ready implementations.
-
----
-
-## 📂 Projects Index
-
-- [Project 01 – CNN](Project-01-CNN/README.md)
-
-*(Add new projects here later, e.g. Project 02 – NLP, Project 03 – Data Analysis)*
-
----
-
-## 📂 Projects Index
-
-- [Project 01 – CNN](Project-01-CNN/README.md)
-
-*(Add new projects here later, e.g. Project 02 – NLP, Project 03 – Data Analysis)*
+### 🧑‍💻 Author
+**Retro** — AI / ML  
+📫 retro099@protonmail.com  
+🔗 [GitHub Profile](https://github.com/Retro099)

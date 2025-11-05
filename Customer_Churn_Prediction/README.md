@@ -44,3 +44,12 @@ Add visuals to `assets/` and reference them here:
 
 ---
 **Author:** Retro • AI/ML • retro099@protonmail.com • [GitHub](https://github.com/Retro099)
+## 📊 Conclusion & Business Impact
+The churn-prediction model identifies telecom customers most likely to leave the service.
+
+**Current Performance**
+- Accuracy ≈ 82 %
+- Recall ≈ 57 %
+- Precision ≈ 68 %
+
+The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.

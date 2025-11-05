@@ -1,28 +1,46 @@
-# Customer_Churn_Prediction
+# Customer Churn Prediction
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
-## Objective
-One-line summary of what this project does.
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Retro099/ML-Projects/blob/main/Customer_Churn_Prediction/notebooks/Customer_Churn_Prediction.ipynb)
 
 ## Overview
-- Type: (Classification / Regression / NLP / etc.)
-- Dataset: (mention source or include data_sample/)
-- Models/Methods: (e.g., CNN, LSTM, RandomForest)
-- Tools: Python, TensorFlow/PyTorch, Pandas, NumPy, Colab
+Predicts which customers are likely to churn so teams can act before they leave.
 
-## Folder Structure
-Customer_Churn_Prediction/
-├── notebooks/
-├── src/
-├── data_sample/
-└── results/
+## Dataset
+- Source: [ADD LINK/NAME]
+- Target: churn (0/1)
+- Notes: encoding categoricals, missing values handled, train/val split.
 
-## How to run
-1. Open the notebook in `notebooks/` using Google Colab.
-2. Install dependencies: `pip install -r requirements.txt`
-3. Run cells top-to-bottom.
+## Models & Metrics
+- Tried: Logistic Regression, Random Forest, (optional) XGBoost/NN
+- Final: [FILL]
+- Metrics: Accuracy [FILL], F1 [FILL], ROC-AUC [FILL]
+
+## Tech
+Python • pandas • scikit-learn • (TensorFlow if used) • Colab ↔ GitHub
+
+## Run
+**Colab:** use the badge above.
+**Local:**
+
+```bash
+git clone https://github.com/Retro099/ML-Projects.git
+cd ML-Projects/Customer_Churn_Prediction
+pip install -r requirements.txt
+# open notebooks/Customer_Churn_Prediction.ipynb
+```
 
 ## Results
-(Briefly mention metrics, accuracy, or attach images in results/)
+Add visuals to `assets/` and reference them here:
+![Confusion Matrix](assets/confusion_matrix.png)
+
+## Future Work
+- Threshold tuning
+- Hyperparameter search (Grid/Optuna)
+- Deployment (Streamlit/Flask)
 
 ---
-(Auto-generated: 2025-11-04)
+**Author:** Retro • AI/ML • retro099@protonmail.com • [GitHub](https://github.com/Retro099)

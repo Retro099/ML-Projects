@@ -1,0 +1,31 @@
+{
+  "sklearn_version": "1.6.1",
+  "artifact": "artifacts/churn_pipeline.joblib",
+  "columns": {
+    "numeric": [
+      "SeniorCitizen",
+      "tenure",
+      "MonthlyCharges"
+    ],
+    "categorical": [
+      "customerID",
+      "gender",
+      "Partner",
+      "Dependents",
+      "PhoneService",
+      "MultipleLines",
+      "InternetService",
+      "OnlineSecurity",
+      "OnlineBackup",
+      "DeviceProtection",
+      "TechSupport",
+      "StreamingTV",
+      "StreamingMovies",
+      "Contract",
+      "PaperlessBilling",
+      "PaymentMethod",
+      "TotalCharges"
+    ]
+  },
+  "notes": "Unified preprocessing + model pipeline for deployment"
+}

@@ -83,3 +83,13 @@ The churn-prediction model identifies telecom customers most likely to leave the
 - Precision ≈ 68 %
 
 The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.
+
+## 📊 Conclusion & Business Impact
+The churn-prediction model identifies telecom customers most likely to leave the service.
+
+**Current Performance**
+- Accuracy ≈ 82 %
+- Recall ≈ 57 %
+- Precision ≈ 68 %
+
+The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.

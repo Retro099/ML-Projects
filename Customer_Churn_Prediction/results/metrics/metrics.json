@@ -1,0 +1,8 @@
+{
+    "model": "Logistic Regression",
+    "accuracy": 0.82,
+    "recall": 0.57,
+    "precision": 0.65,
+    "f1_score": 0.6,
+    "timestamp": "2025-11-06 13:40:57.655675"
+}

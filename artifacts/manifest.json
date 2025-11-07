@@ -1,0 +1,31 @@
+{
+  "sklearn_version": "1.6.0",
+  "artifact": "../artifacts/churn_pipeline.joblib",
+  "columns": {
+    "num": [
+      "SeniorCitizen",
+      "tenure",
+      "MonthlyCharges"
+    ],
+    "cat": [
+      "customerID",
+      "gender",
+      "Partner",
+      "Dependents",
+      "PhoneService",
+      "MultipleLines",
+      "InternetService",
+      "OnlineSecurity",
+      "OnlineBackup",
+      "DeviceProtection",
+      "TechSupport",
+      "StreamingTV",
+      "StreamingMovies",
+      "Contract",
+      "PaperlessBilling",
+      "PaymentMethod",
+      "TotalCharges"
+    ]
+  },
+  "notes": "Version-aligned re-export"
+}

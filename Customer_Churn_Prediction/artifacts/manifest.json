@@ -1,31 +1,11 @@
 {
-  "sklearn_version": "1.6.1",
-  "artifact": "artifacts/churn_pipeline.joblib",
-  "columns": {
-    "numeric": [
-      "SeniorCitizen",
-      "tenure",
-      "MonthlyCharges"
-    ],
-    "categorical": [
-      "customerID",
-      "gender",
-      "Partner",
-      "Dependents",
-      "PhoneService",
-      "MultipleLines",
-      "InternetService",
-      "OnlineSecurity",
-      "OnlineBackup",
-      "DeviceProtection",
-      "TechSupport",
-      "StreamingTV",
-      "StreamingMovies",
-      "Contract",
-      "PaperlessBilling",
-      "PaymentMethod",
-      "TotalCharges"
-    ]
+  "python_version": "3.12-forward-compatible",
+  "sklearn_version": "1.6.0",
+  "metrics": {
+    "accuracy": 0.7963094393186657,
+    "precision": 0.6346749226006192,
+    "recall": 0.5481283422459893,
+    "f1": 0.5882352941176471
   },
-  "notes": "Unified preprocessing + model pipeline for deployment"
+  "notes": "Forward-compatible artifact for Streamlit Cloud 3.13"
 }

@@ -1,0 +1,1316 @@
+Notebook path: Customer_Churn_Real.ipynb
+MD5: c5fc65311091133dc58a1967488339b4
+Total cells: 168
+
+--- Cell #1 (code) size=1412 bytes outputs=yes
+  snippet: # ===== Github_Quick1 (Secure Version) =====
+# Universal Colab–GitHub one-cell setup script with Colab secrets support
+
+from google.colab import drive, userdata
+import os
+
+# --- CONFIG ---
+GITHUB_USERNAME = "Retro099"   ...
+  imports: google.colab, os
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #2 (code) size=725 bytes outputs=yes
+  snippet: # --- Force Colab to write in-memory notebook edits to disk before commit ---
+import IPython, os, time
+from google.colab import _message
+
+def flush_notebook_to_disk():
+    path = '/content/ML-Projects/Customer_Churn_Pred...
+  imports: IPython, google.colab
+  shell/install patterns detected
+  keywords found: save_notebook, git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #3 (code) size=2583 bytes outputs=yes
+  snippet: # ===== Autosave + Safe Backup Layer (Full Safety Edition) =====
+import os, time, subprocess, threading, atexit
+from datetime import datetime
+from pathlib import Path
+
+# --- PATH CONFIG ---
+REPO_PATH = "/content/ML-Proje...
+  imports: os, datetime, pathlib
+  keywords found: git, hardcoded_path
+  !!! issues: git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #4 (code) size=55 bytes outputs=yes
+  snippet: %cd /content/ML-Projects
+!git pull --rebase origin main
+  shell/install patterns detected
+  keywords found: git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #5 (code) size=324 bytes outputs=no
+  snippet: # install missing package for this notebook session
+
+import pandas as pd
+import numpy as np
+import missingno as msno
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+import plotly.graph_o...
+  imports: pandas, numpy, missingno, matplotlib.pyplot, seaborn, plotly.express, plotly.graph_objects, plotly.subplots, warnings
+
+--- Cell #6 (code) size=1031 bytes outputs=yes
+  snippet: # install missing packages for this notebook session
+%pip install xgboost
+%pip install catboost
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder
+
+from sklearn.tree import D...
+  imports: sklearn.preprocessing, sklearn.tree, sklearn.ensemble, sklearn.naive_bayes, sklearn.neighbors, sklearn.svm, sklearn.neural_network, sklearn.linear_model, sklearn.model_selection, sklearn.metrics, xgboost, catboost, sklearn
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #7 (code) size=112 bytes outputs=no
+  snippet: #loading data
+df = pd.read_csv(r"/content/ML-Projects/Customer_Churn_Prediction/data_sample/Customer_Churn.csv")
+  keywords found: pd.read_csv, hardcoded_path
+
+--- Cell #8 (markdown) size=3 bytes outputs=no
+  markdown first: ___
+
+--- Cell #9 (markdown) size=139 bytes outputs=no
+  markdown first: <a id = "6" ></a>
+
+--- Cell #10 (markdown) size=110 bytes outputs=no
+  markdown first: Each row represents a customer, each column contains customer’s attributes described on the column Metadata.
+
+--- Cell #11 (code) size=9 bytes outputs=yes
+  snippet: df.head()
+
+--- Cell #12 (code) size=8 bytes outputs=yes
+  snippet: df.shape
+
+--- Cell #13 (code) size=9 bytes outputs=yes
+  snippet: df.info()
+
+--- Cell #14 (code) size=17 bytes outputs=yes
+  snippet: df.columns.values
+
+--- Cell #15 (code) size=9 bytes outputs=yes
+  snippet: df.dtypes
+
+--- Cell #16 (markdown) size=67 bytes outputs=no
+  markdown first: * The target the we will use to guide the exploration is **Churn**
+
+--- Cell #17 (markdown) size=3 bytes outputs=no
+  markdown first: ***
+
+--- Cell #18 (markdown) size=134 bytes outputs=no
+  markdown first: <a id = "7" ></a>
+
+--- Cell #19 (code) size=55 bytes outputs=yes
+  snippet: # Visualize missing values as a matrix
+msno.matrix(df);
+
+--- Cell #20 (markdown) size=3 bytes outputs=no
+  markdown first: ***
+
+--- Cell #21 (markdown) size=116 bytes outputs=no
+  markdown first: <a id = "8" ></a>
+
+--- Cell #22 (code) size=48 bytes outputs=yes
+  snippet: df = df.drop(['customerID'], axis = 1)
+df.head()
+
+--- Cell #23 (code) size=86 bytes outputs=yes
+  snippet: df['TotalCharges'] = pd.to_numeric(df.TotalCharges, errors='coerce')
+df.isnull().sum()
+
+--- Cell #24 (code) size=104 bytes outputs=yes
+  snippet: df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
+df[np.isnan(df['TotalCharges'])]
+
+--- Cell #25 (code) size=27 bytes outputs=yes
+  snippet: df[df['tenure'] == 0].index
+
+--- Cell #26 (code) size=93 bytes outputs=yes
+  snippet: df.drop(labels=df[df['tenure'] == 0].index, axis=0, inplace=True)
+df[df['tenure'] == 0].index
+
+--- Cell #27 (code) size=36 bytes outputs=yes
+  snippet: df.fillna(df["TotalCharges"].mean())
+
+--- Cell #28 (code) size=17 bytes outputs=yes
+  snippet: df.isnull().sum()
+
+--- Cell #29 (code) size=75 bytes outputs=yes
+  snippet: df["SeniorCitizen"]= df["SeniorCitizen"].map({0: "No", 1: "Yes"})
+df.head()
+
+--- Cell #30 (code) size=58 bytes outputs=yes
+  snippet: df["InternetService"].describe(include=['object', 'bool'])
+
+--- Cell #31 (code) size=91 bytes outputs=yes
+  snippet: numerical_cols = ['tenure', 'MonthlyCharges', 'TotalCharges']
+df[numerical_cols].describe()
+
+--- Cell #32 (code) size=836 bytes outputs=yes
+  snippet: g_labels = ['Male', 'Female']
+c_labels = ['No', 'Yes']
+# Create subplots: use 'domain' type for Pie subplot
+fig = make_subplots(rows=1, cols=2, specs=[[{'type':'domain'}, {'type':'domain'}]])
+fig.add_trace(go.Pie(labels=...
+
+--- Cell #33 (code) size=63 bytes outputs=yes
+  snippet: df["Churn"][df["Churn"]=="No"].groupby(by=df["gender"]).count()
+
+--- Cell #34 (code) size=64 bytes outputs=yes
+  snippet: df["Churn"][df["Churn"]=="Yes"].groupby(by=df["gender"]).count()
+
+--- Cell #35 (code) size=1098 bytes outputs=yes
+  snippet: plt.figure(figsize=(6, 6))
+labels =["Churn: Yes","Churn:No"]
+values = [1869,5163]
+labels_gender = ["F","M","F","M"]
+sizes_gender = [939,930 , 2544,2619]
+colors = ['#ff6666', '#66b3ff']
+colors_gender = ['#c2c2f0','#ffb3e6...
+  keywords found: hardcoded_path
+
+--- Cell #36 (code) size=286 bytes outputs=yes
+  snippet: fig = px.histogram(df, x="Churn", color="Contract", barmode="group", title="<b>Customer contract distribution<b>")
+fig.update_layout(width=700, height=500, bargap=0.1)
+fig.write_html("/content/ML-Projects/Customer_Churn_...
+  keywords found: hardcoded_path
+
+--- Cell #37 (code) size=230 bytes outputs=yes
+  snippet: labels = df['PaymentMethod'].unique()
+values = df['PaymentMethod'].value_counts()
+
+fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
+fig.update_layout(title_text="<b>Payment Method Distribution</b>")
+...
+
+--- Cell #38 (code) size=314 bytes outputs=yes
+  snippet: fig = px.histogram(df, x="Churn", color="PaymentMethod", title="<b>Customer Payment Method distribution w.r.t. Churn</b>")
+fig.update_layout(width=700, height=500, bargap=0.1)
+fig.write_html("/content/ML-Projects/Custome...
+  keywords found: hardcoded_path
+
+--- Cell #39 (markdown) size=230 bytes outputs=no
+  markdown first: * Major customers who moved out were having Electronic Check as Payment Method.
+
+--- Cell #40 (code) size=30 bytes outputs=yes
+  snippet: df["InternetService"].unique()
+
+--- Cell #41 (code) size=69 bytes outputs=yes
+  snippet: df[df["gender"]=="Male"][["InternetService", "Churn"]].value_counts()
+
+--- Cell #42 (code) size=71 bytes outputs=yes
+  snippet: df[df["gender"]=="Female"][["InternetService", "Churn"]].value_counts()
+
+--- Cell #43 (code) size=794 bytes outputs=yes
+  snippet: fig = go.Figure()
+
+fig.add_trace(go.Bar(
+  x = [['Churn:No', 'Churn:No', 'Churn:Yes', 'Churn:Yes'],
+       ["Female", "Male", "Female", "Male"]],
+  y = [965, 992, 219, 240],
+  name = 'DSL',
+))
+
+fig.add_trace(go.Bar(
+  x ...
+  keywords found: hardcoded_path
+
+--- Cell #44 (code) size=354 bytes outputs=yes
+  snippet: color_map = {"Yes": "#FF97FF", "No": "#AB63FA"}
+fig = px.histogram(df, x="Churn", color="Dependents", barmode="group", title="<b>Dependents distribution</b>", color_discrete_map=color_map)
+fig.update_layout(width=700, he...
+  keywords found: hardcoded_path
+
+--- Cell #45 (code) size=373 bytes outputs=yes
+  snippet: color_map = {"Yes": '#FFA15A', "No": '#00CC96'}
+fig = px.histogram(df, x="Churn", color="Partner", barmode="group", title="<b>Chrun distribution w.r.t. Partners</b>", color_discrete_map=color_map)
+fig.update_layout(width...
+  keywords found: hardcoded_path
+
+--- Cell #46 (code) size=374 bytes outputs=yes
+  snippet: color_map = {"Yes": '#00CC96', "No": '#B6E880'}
+fig = px.histogram(df, x="Churn", color="SeniorCitizen", title="<b>Chrun distribution w.r.t. Senior Citizen</b>", color_discrete_map=color_map)
+fig.update_layout(width=700,...
+  keywords found: hardcoded_path
+
+--- Cell #47 (code) size=366 bytes outputs=yes
+  snippet: color_map = {"Yes": "#FF97FF", "No": "#AB63FA"}
+fig = px.histogram(df, x="Churn", color="OnlineSecurity", barmode="group", title="<b>Churn w.r.t Online Security</b>", color_discrete_map=color_map)
+fig.update_layout(width...
+  keywords found: hardcoded_path
+
+--- Cell #48 (code) size=383 bytes outputs=yes
+  snippet: color_map = {"Yes": '#FFA15A', "No": '#00CC96'}
+fig = px.histogram(df, x="Churn", color="PaperlessBilling",  title="<b>Chrun distribution w.r.t. Paperless Billing</b>", color_discrete_map=color_map)
+fig.update_layout(wid...
+  keywords found: hardcoded_path
+
+--- Cell #49 (code) size=304 bytes outputs=yes
+  snippet: fig = px.histogram(df, x="Churn", color="TechSupport",barmode="group",  title="<b>Chrun distribution w.r.t. TechSupport</b>")
+fig.update_layout(width=700, height=500, bargap=0.1)
+fig.write_html("/content/ML-Projects/Cust...
+  keywords found: hardcoded_path
+
+--- Cell #50 (code) size=370 bytes outputs=yes
+  snippet: color_map = {"Yes": '#00CC96', "No": '#B6E880'}
+fig = px.histogram(df, x="Churn", color="PhoneService", title="<b>Chrun distribution w.r.t. Phone Service</b>", color_discrete_map=color_map)
+fig.update_layout(width=700, h...
+  keywords found: hardcoded_path
+
+--- Cell #51 (code) size=427 bytes outputs=yes
+  snippet: sns.set_context("paper",font_scale=1.1)
+ax = sns.kdeplot(df.MonthlyCharges[(df["Churn"] == 'No') ],
+                color="Red", shade = True);
+ax = sns.kdeplot(df.MonthlyCharges[(df["Churn"] == 'Yes') ],
+               ...
+
+--- Cell #52 (code) size=381 bytes outputs=yes
+  snippet: ax = sns.kdeplot(df.TotalCharges[(df["Churn"] == 'No') ],
+                color="Gold", shade = True);
+ax = sns.kdeplot(df.TotalCharges[(df["Churn"] == 'Yes') ],
+                ax =ax, color="Green", shade= True);
+ax.le...
+
+--- Cell #53 (code) size=386 bytes outputs=yes
+  snippet: fig = px.box(df, x='Churn', y = 'tenure')
+
+# Update yaxis properties
+fig.update_yaxes(title_text='Tenure (Months)', row=1, col=1)
+# Update xaxis properties
+fig.update_xaxes(title_text='Churn', row=1, col=1)
+
+# Update siz...
+
+--- Cell #54 (code) size=278 bytes outputs=yes
+  snippet: plt.figure(figsize=(25, 10))
+
+corr = df.apply(lambda x: pd.factorize(x)[0]).corr()
+
+mask = np.triu(np.ones_like(corr, dtype=bool))
+
+ax = sns.heatmap(corr, mask=mask, xticklabels=corr.columns, yticklabels=corr.columns, an...
+
+--- Cell #55 (markdown) size=3 bytes outputs=no
+  markdown first: ___
+
+--- Cell #56 (markdown) size=95 bytes outputs=no
+  markdown first: <a id = "1111" ></a>
+
+--- Cell #57 (code) size=179 bytes outputs=no
+  snippet: def object_to_int(dataframe_series):
+    if dataframe_series.dtype=='object':
+        dataframe_series = LabelEncoder().fit_transform(dataframe_series)
+    return dataframe_series
+
+--- Cell #58 (code) size=51 bytes outputs=yes
+  snippet: df = df.apply(lambda x: object_to_int(x))
+df.head()
+
+--- Cell #59 (code) size=76 bytes outputs=yes
+  snippet: plt.figure(figsize=(14,7))
+df.corr()['Churn'].sort_values(ascending = False)
+
+--- Cell #60 (code) size=55 bytes outputs=no
+  snippet: X = df.drop(columns = ['Churn'])
+y = df['Churn'].values
+
+--- Cell #61 (code) size=104 bytes outputs=no
+  snippet: X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.30, random_state = 40, stratify=y)
+
+--- Cell #62 (code) size=175 bytes outputs=no
+  snippet: def distplot(feature, frame, color='r'):
+    plt.figure(figsize=(8,3))
+    plt.title("Distribution for {}".format(feature))
+    ax = sns.distplot(frame[feature], color= color)
+
+--- Cell #63 (code) size=96 bytes outputs=yes
+  snippet: num_cols = ["tenure", 'MonthlyCharges', 'TotalCharges']
+for feat in num_cols: distplot(feat, df)
+
+--- Cell #64 (markdown) size=91 bytes outputs=no
+  markdown first: <a id = "111" ></a>
+
+--- Cell #65 (code) size=188 bytes outputs=yes
+  snippet: df_std = pd.DataFrame(StandardScaler().fit_transform(df[num_cols].astype('float64')),
+                       columns=num_cols)
+for feat in numerical_cols: distplot(feat, df_std, color='c')
+
+--- Cell #66 (code) size=324 bytes outputs=no
+  snippet: # Divide the columns into 3 categories, one ofor standardisation, one for label encoding and one for one hot encoding
+
+cat_cols_ohe =['PaymentMethod', 'Contract', 'InternetService'] # those that need one-hot encoding
+cat...
+
+--- Cell #67 (code) size=139 bytes outputs=no
+  snippet: scaler= StandardScaler()
+
+X_train[num_cols] = scaler.fit_transform(X_train[num_cols])
+X_test[num_cols] = scaler.transform(X_test[num_cols])
+
+--- Cell #68 (markdown) size=163 bytes outputs=no
+  markdown first: <a id = "11" ></a>
+
+--- Cell #69 (markdown) size=56 bytes outputs=no
+  markdown first: <a id = "101" ></a>
+
+--- Cell #70 (code) size=203 bytes outputs=yes
+  snippet: knn_model = KNeighborsClassifier(n_neighbors = 11)
+knn_model.fit(X_train,y_train)
+predicted_y = knn_model.predict(X_test)
+accuracy_knn = knn_model.score(X_test,y_test)
+print("KNN accuracy:",accuracy_knn)
+
+--- Cell #71 (code) size=49 bytes outputs=yes
+  snippet: print(classification_report(y_test, predicted_y))
+
+--- Cell #72 (markdown) size=55 bytes outputs=no
+  markdown first: <a id = "102" ></a>
+
+--- Cell #73 (code) size=188 bytes outputs=yes
+  snippet: svc_model = SVC(random_state = 1)
+svc_model.fit(X_train,y_train)
+predict_y = svc_model.predict(X_test)
+accuracy_svc = svc_model.score(X_test,y_test)
+print("SVM accuracy is :",accuracy_svc)
+
+--- Cell #74 (code) size=47 bytes outputs=yes
+  snippet: print(classification_report(y_test, predict_y))
+
+--- Cell #75 (markdown) size=65 bytes outputs=no
+  markdown first: <a id = "103" ></a>
+
+--- Cell #76 (code) size=352 bytes outputs=yes
+  snippet: model_rf = RandomForestClassifier(n_estimators=500, oob_score=True, n_jobs=-1,
+                                  random_state=50, max_features="sqrt",
+                                  max_leaf_nodes=30)
+model_rf.fit(X_t...
+
+--- Cell #77 (code) size=53 bytes outputs=yes
+  snippet: print(classification_report(y_test, prediction_test))
+
+--- Cell #78 (code) size=341 bytes outputs=yes
+  snippet: plt.figure(figsize=(4,3))
+sns.heatmap(confusion_matrix(y_test, prediction_test),
+                annot=True,fmt = "d",linecolor="k",linewidths=3)
+
+plt.title(" RANDOM FOREST CONFUSION MATRIX",fontsize=14)
+plt.savefig("/co...
+  keywords found: hardcoded_path
+
+--- Cell #79 (code) size=454 bytes outputs=yes
+  snippet: y_rfpred_prob = model_rf.predict_proba(X_test)[:,1]
+fpr_rf, tpr_rf, thresholds = roc_curve(y_test, y_rfpred_prob)
+plt.plot([0, 1], [0, 1], 'k--' )
+plt.plot(fpr_rf, tpr_rf, label='Random Forest',color = "r")
+plt.xlabel('F...
+  keywords found: hardcoded_path
+
+--- Cell #80 (markdown) size=70 bytes outputs=no
+  markdown first: <a id = "104" ></a>
+
+--- Cell #81 (code) size=160 bytes outputs=yes
+  snippet: lr_model = LogisticRegression()
+lr_model.fit(X_train,y_train)
+accuracy_lr = lr_model.score(X_test,y_test)
+print("Logistic Regression accuracy is :",accuracy_lr)
+
+--- Cell #82 (code) size=94 bytes outputs=yes
+  snippet: lr_pred= lr_model.predict(X_test)
+report = classification_report(y_test,lr_pred)
+print(report)
+
+--- Cell #83 (code) size=343 bytes outputs=yes
+  snippet: plt.figure(figsize=(4,3))
+sns.heatmap(confusion_matrix(y_test, lr_pred),
+                annot=True,fmt = "d",linecolor="k",linewidths=3)
+
+plt.title("LOGISTIC REGRESSION CONFUSION MATRIX",fontsize=14)
+plt.savefig("/conte...
+  keywords found: hardcoded_path
+
+--- Cell #84 (code) size=455 bytes outputs=yes
+  snippet: y_pred_prob = lr_model.predict_proba(X_test)[:,1]
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_prob)
+plt.plot([0, 1], [0, 1], 'k--' )
+plt.plot(fpr, tpr, label='Logistic Regression',color = "r")
+plt.xlabel('False Posit...
+  keywords found: hardcoded_path
+
+--- Cell #85 (markdown) size=73 bytes outputs=no
+  markdown first: <a id = "105" ></a>
+
+--- Cell #86 (code) size=197 bytes outputs=yes
+  snippet: dt_model = DecisionTreeClassifier()
+dt_model.fit(X_train,y_train)
+predictdt_y = dt_model.predict(X_test)
+accuracy_dt = dt_model.score(X_test,y_test)
+print("Decision Tree accuracy is :",accuracy_dt)
+
+--- Cell #87 (markdown) size=35 bytes outputs=no
+  markdown first: Decision tree gives very low score.
+
+--- Cell #88 (code) size=49 bytes outputs=yes
+  snippet: print(classification_report(y_test, predictdt_y))
+
+--- Cell #89 (markdown) size=68 bytes outputs=no
+  markdown first: <a id = "106" ></a>
+
+--- Cell #90 (code) size=171 bytes outputs=yes
+  snippet: a_model = AdaBoostClassifier()
+a_model.fit(X_train,y_train)
+a_preds = a_model.predict(X_test)
+print("AdaBoost Classifier accuracy")
+metrics.accuracy_score(y_test, a_preds)
+
+--- Cell #91 (code) size=45 bytes outputs=yes
+  snippet: print(classification_report(y_test, a_preds))
+
+--- Cell #92 (code) size=343 bytes outputs=yes
+  snippet: plt.figure(figsize=(4,3))
+sns.heatmap(confusion_matrix(y_test, a_preds),
+                annot=True,fmt = "d",linecolor="k",linewidths=3)
+
+plt.title("AdaBoost Classifier Confusion Matrix",fontsize=14)
+plt.savefig("/conte...
+  keywords found: hardcoded_path
+
+--- Cell #93 (markdown) size=76 bytes outputs=no
+  markdown first: <a id = "107" ></a>
+
+--- Cell #94 (code) size=158 bytes outputs=yes
+  snippet: gb = GradientBoostingClassifier()
+gb.fit(X_train, y_train)
+gb_pred = gb.predict(X_test)
+print("Gradient Boosting Classifier", accuracy_score(y_test, gb_pred))
+
+--- Cell #95 (code) size=45 bytes outputs=yes
+  snippet: print(classification_report(y_test, gb_pred))
+
+--- Cell #96 (code) size=361 bytes outputs=yes
+  snippet: plt.figure(figsize=(4,3))
+sns.heatmap(confusion_matrix(y_test, gb_pred),
+                annot=True,fmt = "d",linecolor="k",linewidths=3)
+
+plt.title("Gradient Boosting Classifier Confusion Matrix",fontsize=14)
+plt.savefi...
+  keywords found: hardcoded_path
+
+--- Cell #97 (markdown) size=161 bytes outputs=no
+  markdown first: <a id = "108" ></a>
+
+--- Cell #98 (code) size=372 bytes outputs=yes
+  snippet: from sklearn.ensemble import VotingClassifier
+clf1 = GradientBoostingClassifier()
+clf2 = LogisticRegression()
+clf3 = AdaBoostClassifier()
+eclf1 = VotingClassifier(estimators=[('gbc', clf1), ('lr', clf2), ('abc', clf3)], ...
+  imports: sklearn.ensemble
+
+--- Cell #99 (code) size=49 bytes outputs=yes
+  snippet: print(classification_report(y_test, predictions))
+
+--- Cell #100 (code) size=318 bytes outputs=yes
+  snippet: plt.figure(figsize=(4,3))
+sns.heatmap(confusion_matrix(y_test, predictions),
+                annot=True,fmt = "d",linecolor="k",linewidths=3)
+
+plt.title("FINAL CONFUSION MATRIX",fontsize=14)
+plt.savefig("/content/ML-Proj...
+  keywords found: hardcoded_path
+
+--- Cell #101 (code) size=104 bytes outputs=yes
+  snippet: %cd /content/ML-Projects
+!git add .
+!git commit -m "update: new results and plots"
+!git push origin main
+  shell/install patterns detected
+  keywords found: git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #102 (markdown) size=1471 bytes outputs=no
+  markdown first: # 📊 Conclusion & Business Impact
+
+--- Cell #103 (code) size=577 bytes outputs=yes
+  snippet: readme_path = "/content/ML-Projects/Customer_Churn_Prediction/README.md"
+
+conclusion_md = """\
+## 📊 Conclusion & Business Impact
+The churn-prediction model identifies telecom customers most likely to leave the service.
+
+...
+  keywords found: hardcoded_path
+
+--- Cell #104 (markdown) size=53 bytes outputs=no
+  markdown first: **For the above error of pushing to the main branch**
+
+--- Cell #105 (markdown) size=13 bytes outputs=no
+  markdown first: **New Token**
+
+--- Cell #106 (code) size=219 bytes outputs=yes
+  snippet: from google.colab import userdata
+token = userdata.get("GITHUB_TOKEN")
+print("✅ Token loaded" if token else "⚠️ Token missing")
+print(token[:10] + "..." + token[-5:])  # just to confirm it's NOT the old ghp_E1Dwm
+  imports: google.colab
+
+--- Cell #107 (code) size=384 bytes outputs=yes
+  snippet: cfg_path = "/content/ML-Projects/.git/config"
+token = userdata.get("GITHUB_TOKEN")
+
+lines = []
+with open(cfg_path, "r") as f:
+    for line in f:
+        if "url =" in line and "github.com" in line:
+            line = f"	...
+  shell/install patterns detected
+  keywords found: git, hardcoded_path, open(...,'wb'
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #108 (code) size=78 bytes outputs=yes
+  snippet: %cd /content/ML-Projects
+!git pull --rebase origin main
+!git push origin main
+  shell/install patterns detected
+  keywords found: git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #109 (code) size=12 bytes outputs=yes
+  snippet: !git status
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #110 (code) size=160 bytes outputs=yes
+  snippet: %cd /content/ML-Projects
+!git add Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb
+!git commit -m "update: notebook changes"
+!git push origin main
+  shell/install patterns detected
+  keywords found: git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #111 (code) size=37 bytes outputs=yes
+  snippet: %cd /content/ML-Projects
+!git status
+  shell/install patterns detected
+  keywords found: git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #112 (code) size=34 bytes outputs=yes
+  snippet: !git log -1 --oneline
+!git status
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #113 (code) size=155 bytes outputs=yes
+  snippet: %cd /content/ML-Projects
+!git add Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb
+!git commit -m "manual save via git"
+!git push origin main
+  shell/install patterns detected
+  keywords found: git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #114 (code) size=66 bytes outputs=yes
+  snippet: import os
+print("Current working directory:", os.getcwd())
+!ls -l
+  imports: os
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #115 (code) size=61 bytes outputs=yes
+  snippet: %cd /content/ML-Projects/Customer_Churn_Prediction/notebooks
+  keywords found: hardcoded_path
+
+--- Cell #116 (code) size=7 bytes outputs=yes
+  snippet: !ls -l
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #117 (code) size=12 bytes outputs=yes
+  snippet: !git status
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #118 (code) size=177 bytes outputs=yes
+  snippet: %cd /content/ML-Projects
+!git add Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb
+!git commit -m "update: notebook changes synced correctly"
+!git push origin main
+  shell/install patterns detected
+  keywords found: git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #119 (code) size=12 bytes outputs=yes
+  snippet: !git status
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #120 (markdown) size=4720 bytes outputs=no
+  markdown first: Here’s the complete breakdown of **Stage 10 — Final Documentation & Portfolio Polish**, along with explanations and a critical analysis of i...
+
+--- Cell #121 (code) size=9 bytes outputs=yes
+  snippet: !pwd
+!ls
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #122 (code) size=493 bytes outputs=yes
+  snippet: # ===== Stage 10.1 — Export Final Model Metrics =====
+
+import json, datetime
+
+metrics = {
+    "model": "Logistic Regression",
+    "accuracy": 0.82,
+    "recall": 0.57,
+    "precision": 0.65,
+    "f1_score": 0.60,
+    "ti...
+  imports: json
+  keywords found: open(...,'wb'
+
+--- Cell #123 (code) size=22 bytes outputs=yes
+  snippet: !ls ../results/metrics
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #124 (markdown) size=1483 bytes outputs=no
+  markdown first: # 🧠 Customer Churn Prediction
+
+--- Cell #125 (code) size=25 bytes outputs=yes
+  snippet: %cd /content/ML-Projects
+  keywords found: hardcoded_path
+
+--- Cell #126 (code) size=42 bytes outputs=yes
+  snippet: !cat README.md  # to view current content
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #127 (code) size=2170 bytes outputs=yes
+  snippet: # Safe method to write README.md without syntax errors
+
+import os
+from pathlib import Path
+
+# Move to repo root
+os.chdir("/content/ML-Projects")
+
+# Define README content safely using single quotes for the string
+readme =...
+  imports: os, pathlib
+  shell/install patterns detected
+  keywords found: git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #128 (code) size=24 bytes outputs=yes
+  snippet: !git status --porcelain
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #129 (code) size=19 bytes outputs=yes
+  snippet: !git log -1 --stat
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #130 (code) size=37 bytes outputs=yes
+  snippet: %cd /content/ML-Projects
+!git status
+  shell/install patterns detected
+  keywords found: git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #131 (code) size=107 bytes outputs=yes
+  snippet: !git tag -a v1.0 -m "Stage 10 complete — Final documentation and portfolio polish"
+!git push origin v1.0
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #132 (code) size=40 bytes outputs=yes
+  snippet: !git fetch --tags
+!git show v1.0 --stat
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #133 (code) size=1483 bytes outputs=yes
+  snippet: import os
+from pathlib import Path
+
+os.chdir("/content/ML-Projects/Customer_Churn_Prediction")
+
+summary = '''# Customer Churn Prediction — One-Page Summary
+
+## Problem
+Identify customers likely to churn so the business c...
+  imports: os, pathlib
+  keywords found: streamlit, git, hardcoded_path
+  !!! issues: git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #134 (code) size=111 bytes outputs=yes
+  snippet: !gh release create v1.0 --title "Stage 10 Final" --notes "Documentation complete, metrics + visuals included."
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #135 (markdown) size=5627 bytes outputs=no
+  markdown first: # Stage 11 — Model Deployment
+
+--- Cell #136 (code) size=27 bytes outputs=yes
+  snippet: hasattr(lr_model, "coef_")
+
+--- Cell #137 (markdown) size=0 bytes outputs=no
+  markdown first: 
+
+--- Cell #138 (markdown) size=1042 bytes outputs=no
+  markdown first: | Checkpoint           | What You Actually Have                                                                              | Impact       ...
+
+--- Cell #139 (markdown) size=1237 bytes outputs=no
+  markdown first: Yes — exactly that cell.
+
+--- Cell #140 (code) size=64 bytes outputs=yes
+  snippet: !pip install -U scikit-learn==1.6.0 joblib==1.4.2 numpy==1.26.4
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #141 (code) size=1741 bytes outputs=yes
+  snippet: from pathlib import Path
+import joblib, json, pandas as pd, sklearn
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from...
+  imports: pathlib, joblib, sklearn.preprocessing, sklearn.compose, sklearn.pipeline, sklearn.linear_model, sklearn.model_selection, sklearn.metrics
+  keywords found: pd.read_csv, hardcoded_path, open(...,'wb', manifest.json
+
+--- Cell #142 (code) size=22 bytes outputs=yes
+  snippet: !cat requirements.txt
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #143 (code) size=120 bytes outputs=yes
+  snippet: !git add Customer_Churn_Prediction/README.md
+!git commit -m "Update README after version pinning"
+!git push origin main
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #144 (code) size=18 bytes outputs=yes
+  snippet: !python3 --version
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #145 (code) size=65 bytes outputs=no
+  snippet: !rm -f Customer_Churn_Prediction/artifacts/churn_pipeline.joblib
+  shell/install patterns detected
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #146 (code) size=1868 bytes outputs=yes
+  snippet: from pathlib import Path
+import joblib, json, pandas as pd, sklearn
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from...
+  imports: pathlib, joblib, sklearn.preprocessing, sklearn.compose, sklearn.pipeline, sklearn.linear_model, sklearn.model_selection, sklearn.metrics
+  keywords found: pd.read_csv, streamlit, hardcoded_path, open(...,'wb', manifest.json
+
+--- Cell #147 (code) size=1787 bytes outputs=yes
+  snippet: import pandas as pd, json, joblib, sklearn
+from pathlib import Path
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.linear_model import LogisticR...
+  imports: pandas, pathlib, sklearn.compose, sklearn.preprocessing, sklearn.linear_model, sklearn.pipeline, sklearn.model_selection, sklearn.metrics
+  keywords found: pd.read_csv, streamlit, hardcoded_path, open(...,'wb', manifest.json
+
+--- Cell #148 (code) size=1858 bytes outputs=yes
+  snippet: !cat <<'EOF' > Customer_Churn_Prediction/rebuild_artifact_streamlit.py
+import pandas as pd, json, joblib, sklearn
+from pathlib import Path
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import S...
+  imports: pandas, pathlib, sklearn.compose, sklearn.preprocessing, sklearn.linear_model, sklearn.pipeline, sklearn.model_selection, sklearn.metrics
+  shell/install patterns detected
+  keywords found: pd.read_csv, streamlit, hardcoded_path, open(...,'wb', manifest.json
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #149 (code) size=184 bytes outputs=yes
+  snippet: %cd /content/ML-Projects
+!git add Customer_Churn_Prediction/artifacts/
+!git commit -m "Rebuilt artifact for Streamlit Cloud environment (Python 3.13 compatible)"
+!git push origin main
+  shell/install patterns detected
+  keywords found: streamlit, git, hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #150 (code) size=417 bytes outputs=yes
+  snippet: import subprocess, os
+
+os.chdir("/content/ML-Projects")
+
+# Stage the correct artifacts folder
+subprocess.run(["git", "add", "-f", "artifacts/"], check=True)
+subprocess.run(["git", "commit", "-m", "Add rebuilt artifact fo...
+  imports: subprocess
+  keywords found: streamlit, git, hardcoded_path
+  !!! issues: git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #151 (code) size=404 bytes outputs=yes
+  snippet: import shutil, os
+
+src = "/content/ML-Projects/artifacts"
+dst = "/content/ML-Projects/Customer_Churn_Prediction/artifacts"
+
+if os.path.exists(src):
+    if os.path.exists(dst):
+        print("⚠️ Destination already exists...
+  imports: shutil
+  keywords found: hardcoded_path, shutil.move
+
+--- Cell #152 (code) size=112 bytes outputs=yes
+  snippet: from pathlib import Path
+ARTIFACTS_DIR = Path.cwd().parent / "artifacts"
+print("Resolved path:", ARTIFACTS_DIR)
+  imports: pathlib
+
+--- Cell #153 (code) size=65 bytes outputs=no
+  snippet: !git add Customer_Churn_Prediction/rebuild_artifact_streamlit.py
+  shell/install patterns detected
+  keywords found: streamlit, git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #154 (code) size=34 bytes outputs=yes
+  snippet: !git pull --no-rebase origin main
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #155 (code) size=22 bytes outputs=yes
+  snippet: !git push origin main
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #156 (code) size=11 bytes outputs=no
+  snippet: !git add .
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #157 (code) size=286 bytes outputs=no
+  snippet: def safe_push(msg="autosync"):
+    import os
+    os.system("git fetch origin main")
+    os.system("git pull --no-rebase origin main")
+    os.system("git add .")
+    os.system(f"git commit -m '{msg}' || echo no changes")
+...
+  imports: os
+  keywords found: git
+  !!! issues: git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #158 (code) size=38 bytes outputs=no
+  snippet: safe_push("Stage 11 rebuild + fixes")
+
+--- Cell #159 (code) size=492 bytes outputs=yes
+  snippet: import shutil, subprocess, os, datetime
+
+repo_dir = "/content/ML-Projects/Customer_Churn_Prediction/notebooks"
+src = os.path.join(repo_dir, "Customer_Churn_Real.ipynb")
+dst = os.path.join(repo_dir, f"Customer_Churn_Real_...
+  imports: shutil
+  keywords found: git, hardcoded_path
+  !!! issues: git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #160 (code) size=154 bytes outputs=yes
+  snippet: !git add -f Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb
+!git commit -m "Force overwrite to sync real notebook"
+!git push -f origin main
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #161 (code) size=511 bytes outputs=yes
+  snippet: import os, shutil, subprocess
+
+src = "/content/ML-Projects/artifacts"
+dst = "/content/ML-Projects/Customer_Churn_Prediction/artifacts"
+
+# Move only if it exists and destination doesn't already have it
+if os.path.exists(s...
+  imports: os
+  keywords found: hardcoded_path, shutil.move
+
+--- Cell #162 (code) size=12 bytes outputs=yes
+  snippet: !git status
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #163 (code) size=111 bytes outputs=yes
+  snippet: !git add Customer_Churn_Prediction/artifacts
+!git commit -m "Add moved artifacts folder"
+!git push origin main
+  shell/install patterns detected
+  keywords found: git
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.; git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #164 (code) size=57 bytes outputs=yes
+  snippet: !apt-get install tree -y
+!tree -L 3 /content/ML-Projects
+  shell/install patterns detected
+  keywords found: hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #165 (code) size=225 bytes outputs=yes
+  snippet: import shutil, os, subprocess
+
+path = "/content/ML-Projects/artifacts"
+if os.path.exists(path):
+    shutil.rmtree(path)
+    print("✅ Removed extra artifacts folder from root.")
+else:
+    print("No duplicate folder found....
+  imports: shutil
+  keywords found: hardcoded_path
+
+--- Cell #166 (code) size=318 bytes outputs=yes
+  snippet: import subprocess, os
+
+os.chdir("/content/ML-Projects")
+subprocess.run(["git", "add", "-A"], check=False)
+subprocess.run(["git", "commit", "-m", "Cleanup: removed duplicate root artifacts folder"], check=False)
+subproces...
+  imports: subprocess
+  keywords found: git, hardcoded_path
+  !!! issues: git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+--- Cell #167 (code) size=32 bytes outputs=yes
+  snippet: !tree -L 3 /content/ML-Projects
+  shell/install patterns detected
+  keywords found: hardcoded_path
+  !!! issues: contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.
+
+--- Cell #168 (code) size=5466 bytes outputs=yes
+  snippet: # ===== Repo_Sanity_Check1 + Safe Push v2 =====
+import os, subprocess, hashlib, time, urllib.request, json, sys
+from pathlib import Path
+
+# --- CONFIG: set these 2 only ---
+REPO_ROOT = Path("/content/ML-Projects")   # yo...
+  imports: os, pathlib, google.colab
+  keywords found: save_notebook, git, hardcoded_path
+  !!! issues: git commands in notebook — risky in Colab. Prefer local git or saved script.
+
+Summary suspicious cells count: 50
+
+Detailed suspicious cells:
+ Cell #1: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: # ===== Github_Quick1 (Secure Version) =====
+# Universal Colab–GitHub one-cell setup script with Colab secrets support
+
+from google.colab import drive, userdata
+import os
+
+# --- CONFIG ---
+GITHUB_USERNAME = "Retro099"   ...
+
+ Cell #2: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: # --- Force Colab to write in-memory notebook edits to disk before commit ---
+import IPython, os, time
+from google.colab import _message
+
+def flush_notebook_to_disk():
+    path = '/content/ML-Projects/Customer_Churn_Pred...
+
+ Cell #3: ['git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: # ===== Autosave + Safe Backup Layer (Full Safety Edition) =====
+import os, time, subprocess, threading, atexit
+from datetime import datetime
+from pathlib import Path
+
+# --- PATH CONFIG ---
+REPO_PATH = "/content/ML-Proje...
+
+ Cell #4: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: %cd /content/ML-Projects
+!git pull --rebase origin main
+
+ Cell #6: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: # install missing packages for this notebook session
+%pip install xgboost
+%pip install catboost
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder
+
+from sklearn.tree import D...
+
+ Cell #101: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: %cd /content/ML-Projects
+!git add .
+!git commit -m "update: new results and plots"
+!git push origin main
+
+ Cell #107: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: cfg_path = "/content/ML-Projects/.git/config"
+token = userdata.get("GITHUB_TOKEN")
+
+lines = []
+with open(cfg_path, "r") as f:
+    for line in f:
+        if "url =" in line and "github.com" in line:
+            line = f"	...
+
+ Cell #108: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: %cd /content/ML-Projects
+!git pull --rebase origin main
+!git push origin main
+
+ Cell #109: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git status
+
+ Cell #110: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: %cd /content/ML-Projects
+!git add Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb
+!git commit -m "update: notebook changes"
+!git push origin main
+
+ Cell #111: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: %cd /content/ML-Projects
+!git status
+
+ Cell #112: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git log -1 --oneline
+!git status
+
+ Cell #113: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: %cd /content/ML-Projects
+!git add Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb
+!git commit -m "manual save via git"
+!git push origin main
+
+ Cell #114: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: import os
+print("Current working directory:", os.getcwd())
+!ls -l
+
+ Cell #116: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !ls -l
+
+ Cell #117: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git status
+
+ Cell #118: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: %cd /content/ML-Projects
+!git add Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb
+!git commit -m "update: notebook changes synced correctly"
+!git push origin main
+
+ Cell #119: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git status
+
+ Cell #121: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !pwd
+!ls
+
+ Cell #123: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !ls ../results/metrics
+
+ Cell #126: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !cat README.md  # to view current content
+
+ Cell #127: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: # Safe method to write README.md without syntax errors
+
+import os
+from pathlib import Path
+
+# Move to repo root
+os.chdir("/content/ML-Projects")
+
+# Define README content safely using single quotes for the string
+readme =...
+
+ Cell #128: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git status --porcelain
+
+ Cell #129: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git log -1 --stat
+
+ Cell #130: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: %cd /content/ML-Projects
+!git status
+
+ Cell #131: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git tag -a v1.0 -m "Stage 10 complete — Final documentation and portfolio polish"
+!git push origin v1.0
+
+ Cell #132: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git fetch --tags
+!git show v1.0 --stat
+
+ Cell #133: ['git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: import os
+from pathlib import Path
+
+os.chdir("/content/ML-Projects/Customer_Churn_Prediction")
+
+summary = '''# Customer Churn Prediction — One-Page Summary
+
+## Problem
+Identify customers likely to churn so the business c...
+
+ Cell #134: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !gh release create v1.0 --title "Stage 10 Final" --notes "Documentation complete, metrics + visuals included."
+
+ Cell #140: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !pip install -U scikit-learn==1.6.0 joblib==1.4.2 numpy==1.26.4
+
+ Cell #142: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !cat requirements.txt
+
+ Cell #143: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git add Customer_Churn_Prediction/README.md
+!git commit -m "Update README after version pinning"
+!git push origin main
+
+ Cell #144: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !python3 --version
+
+ Cell #145: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !rm -f Customer_Churn_Prediction/artifacts/churn_pipeline.joblib
+
+ Cell #148: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !cat <<'EOF' > Customer_Churn_Prediction/rebuild_artifact_streamlit.py
+import pandas as pd, json, joblib, sklearn
+from pathlib import Path
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import S...
+
+ Cell #149: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: %cd /content/ML-Projects
+!git add Customer_Churn_Prediction/artifacts/
+!git commit -m "Rebuilt artifact for Streamlit Cloud environment (Python 3.13 compatible)"
+!git push origin main
+
+ Cell #150: ['git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: import subprocess, os
+
+os.chdir("/content/ML-Projects")
+
+# Stage the correct artifacts folder
+subprocess.run(["git", "add", "-f", "artifacts/"], check=True)
+subprocess.run(["git", "commit", "-m", "Add rebuilt artifact fo...
+
+ Cell #153: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git add Customer_Churn_Prediction/rebuild_artifact_streamlit.py
+
+ Cell #154: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git pull --no-rebase origin main
+
+ Cell #155: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git push origin main
+
+ Cell #156: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git add .
+
+ Cell #157: ['git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: def safe_push(msg="autosync"):
+    import os
+    os.system("git fetch origin main")
+    os.system("git pull --no-rebase origin main")
+    os.system("git add .")
+    os.system(f"git commit -m '{msg}' || echo no changes")
+...
+
+ Cell #159: ['git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: import shutil, subprocess, os, datetime
+
+repo_dir = "/content/ML-Projects/Customer_Churn_Prediction/notebooks"
+src = os.path.join(repo_dir, "Customer_Churn_Real.ipynb")
+dst = os.path.join(repo_dir, f"Customer_Churn_Real_...
+
+ Cell #160: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git add -f Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb
+!git commit -m "Force overwrite to sync real notebook"
+!git push -f origin main
+
+ Cell #162: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git status
+
+ Cell #163: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.', 'git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: !git add Customer_Churn_Prediction/artifacts
+!git commit -m "Add moved artifacts folder"
+!git push origin main
+
+ Cell #164: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !apt-get install tree -y
+!tree -L 3 /content/ML-Projects
+
+ Cell #166: ['git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: import subprocess, os
+
+os.chdir("/content/ML-Projects")
+subprocess.run(["git", "add", "-A"], check=False)
+subprocess.run(["git", "commit", "-m", "Cleanup: removed duplicate root artifacts folder"], check=False)
+subproces...
+
+ Cell #167: ['contains shell installs or system calls (pip/apt/npx/ngrok). Consider moving to requirements.txt or avoiding runtime installs in notebook.']
+   code preview: !tree -L 3 /content/ML-Projects
+
+ Cell #168: ['git commands in notebook — risky in Colab. Prefer local git or saved script.']
+   code preview: # ===== Repo_Sanity_Check1 + Safe Push v2 =====
+import os, subprocess, hashlib, time, urllib.request, json, sys
+from pathlib import Path
+
+# --- CONFIG: set these 2 only ---
+REPO_ROOT = Path("/content/ML-Projects")   # yo...
+
+Files referenced (csv/json/joblib/pkl/png/html/ipynb):
+  - ../results/metrics/metrics.json
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/AdaBoost_Classifier_Confusion_Matrix.png
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Chrun_distribution_w.r.t._Paperless_Billing.html
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Chrun_distribution_w.r.t._Partners.html
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Chrun_distribution_w.r.t._Phone_Service.html
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Chrun_distribution_w.r.t._Senior_Citizen.html
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Chrun_distribution_w.r.t._TechSupport.html
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Churn_Distribution_w.r.t._Internet_Service_and_Gender.html
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Churn_Distribution_w.r.t_Gender.png
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Churn_w.r.t_Online_Security.html
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Customer_Payment_Method_distribution_w.r.t._Churn.html
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Customer_contract_distribution.html
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Dependents_distribution.html
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/FINAL_CONFUSION_MATRIX.png
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Gradient_Boosting_Classifier_Confusion_Matrix.png
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/LOGISTIC_REGRESSION_CONFUSION_MATRIX.png
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Logistic_Regression_ROC_Curve.png
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/RANDOM_FOREST_CONFUSION_MATRIX.png
+  - /content/ML-Projects/Customer_Churn_Prediction/assets/Random_Forest_ROC_Curve.png
+  - /content/ML-Projects/Customer_Churn_Prediction/data_sample/Customer_Churn.csv
+  - /content/ML-Projects/Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb
+  - Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb
+  - Customer_Churn_Real.ipynb
+  - Customer_Churn_Real_{datetime.date.today()}.ipynb
+  - churn_pipeline.joblib
+  - manifest.json
+
+NOTE: Heavy/OS-level or GPU packages detected. These may fail in other runtimes. Consider pinning minimal requirements in requirements.txt or moving heavy installs out.

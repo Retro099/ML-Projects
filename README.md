@@ -26,8 +26,8 @@ Dataset: Bank Customer Data (sample anonymized)
 All metrics are stored in results/metrics/metrics.json.
 
 ## Visuals
-![Confusion Matrix](results/assets/confusion_matrix.png)
-![Feature Importance](results/assets/feature_importance.png)
+![Confusion Matrix](Customer_Churn_Prediction/assets/FINAL_CONFUSION_MATRIX.png)
+![Random Forest](Customer_Churn_Prediction/assets/RANDOM_FOREST_CONFUSION_MATRIX.png)
 
 ## Business Insights
 - Most churned customers had lower balance and shorter tenure.

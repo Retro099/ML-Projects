@@ -3,133 +3,50 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Retro099/ML-Projects/blob/main/Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb)
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Retro099/ML-Projects/blob/main/Customer_Churn_Prediction/notebooks/Customer_Churn_Prediction.ipynb)
+---
 
-## Overview
-Predicts which customers are likely to churn so teams can act before they leave.
+## 🧩 Overview
+Predicts which telecom customers are likely to churn so teams can act before they leave.
 
-## Dataset
-- Source: [ADD LINK/NAME]
-- Target: churn (0/1)
-- Notes: encoding categoricals, missing values handled, train/val split.
+---
 
-## Models & Metrics
-- Tried: Logistic Regression, Random Forest, (optional) XGBoost/NN
-- Final: [FILL]
-- Metrics: Accuracy [FILL], F1 [FILL], ROC-AUC [FILL]
+## 📊 Dataset
+- **Source:** Telco Customer Churn dataset (Kaggle or custom)
+- **Target:** `Churn` (0 = stay, 1 = leave)
+- **Processing:** Encoded categoricals, handled nulls, normalized numericals.
 
-## Tech
-Python • pandas • scikit-learn • (TensorFlow if used) • Colab ↔ GitHub
+---
 
-## Run
-**Colab:** use the badge above.
-**Local:**
+## 🤖 Models & Metrics
+| Model | Accuracy | Precision | Recall | F1 |
+|--------|-----------|------------|---------|----|
+| Logistic Regression | 0.79 | 0.63 | 0.52 | 0.57 |
+| Random Forest (final) | **0.82** | **0.68** | **0.57** | **0.59** |
 
+---
+
+## 🧠 Tech Stack
+Python • pandas • scikit-learn • matplotlib • seaborn • Colab ↔ GitHub
+
+---
+
+## ▶️ Run the Project
+**In Colab:**
+Click the badge above.
+
+**Locally:**
 ```bash
 git clone https://github.com/Retro099/ML-Projects.git
 cd ML-Projects/Customer_Churn_Prediction
 pip install -r requirements.txt
-# open notebooks/Customer_Churn_Prediction.ipynb
-```
+jupyter notebook notebooks/Customer_Churn_Real.ipynb
+
 
 ## Results
 Add visuals to `assets/` and reference them here:
-![Confusion Matrix](assets/confusion_matrix.png)
-
-## Future Work
-- Threshold tuning
-- Hyperparameter search (Grid/Optuna)
-- Deployment (Streamlit/Flask)
-
----
-**Author:** Retro • AI/ML • retro099@protonmail.com • [GitHub](https://github.com/Retro099)
-## 📊 Conclusion & Business Impact
-The churn-prediction model identifies telecom customers most likely to leave the service.
-
-**Current Performance**
-- Accuracy ≈ 82 %
-- Recall ≈ 57 %
-- Precision ≈ 68 %
-
-The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.
-
-## 📊 Conclusion & Business Impact
-The churn-prediction model identifies telecom customers most likely to leave the service.
-
-**Current Performance**
-- Accuracy ≈ 82 %
-- Recall ≈ 57 %
-- Precision ≈ 68 %
-
-The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.
-
-## 📊 Conclusion & Business Impact
-The churn-prediction model identifies telecom customers most likely to leave the service.
-
-**Current Performance**
-- Accuracy ≈ 82 %
-- Recall ≈ 57 %
-- Precision ≈ 68 %
-
-The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.
-
-## 📊 Conclusion & Business Impact
-The churn-prediction model identifies telecom customers most likely to leave the service.
-
-**Current Performance**
-- Accuracy ≈ 82 %
-- Recall ≈ 57 %
-- Precision ≈ 68 %
-
-The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.
-
-## 📊 Conclusion & Business Impact
-The churn-prediction model identifies telecom customers most likely to leave the service.
-
-**Current Performance**
-- Accuracy ≈ 82 %
-- Recall ≈ 57 %
-- Precision ≈ 68 %
-
-The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.
-
-## 📊 Conclusion & Business Impact
-The churn-prediction model identifies telecom customers most likely to leave the service.
-
-**Current Performance**
-- Accuracy ≈ 82 %
-- Recall ≈ 57 %
-- Precision ≈ 68 %
-
-The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.
-
-## 📊 Conclusion & Business Impact
-The churn-prediction model identifies telecom customers most likely to leave the service.
-
-**Current Performance**
-- Accuracy ≈ 82 %
-- Recall ≈ 57 %
-- Precision ≈ 68 %
-
-The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.
-
-## 📊 Conclusion & Business Impact
-The churn-prediction model identifies telecom customers most likely to leave the service.
-
-**Current Performance**
-- Accuracy ≈ 82 %
-- Recall ≈ 57 %
-- Precision ≈ 68 %
-
-The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.
-
-## 📊 Conclusion & Business Impact
-The churn-prediction model identifies telecom customers most likely to leave the service.
-
-**Current Performance**
-- Accuracy ≈ 82 %
-- Recall ≈ 57 %
-- Precision ≈ 68 %
+![Confusion Matrix](Customer_Churn_Prediction/assets/FINAL_CONFUSION_MATRIX.png)
+![Random Forest](Customer_Churn_Prediction/assets/RANDOM_FOREST_CONFUSION_MATRIX.png)
 
 The model helps target high-risk customers for proactive retention, saving marketing resources and improving customer lifetime value.

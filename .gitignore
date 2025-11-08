@@ -1,0 +1,10 @@
+# Ignore local-only folders and scripts
+Backups/
+backup.ps1
+
+# Ignore temp and system files
+*.tmp
+*.log
+*.bak
+.DS_Store
+Thumbs.db

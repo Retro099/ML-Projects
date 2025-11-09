@@ -8,3 +8,4 @@ backup.ps1
 *.bak
 .DS_Store
 Thumbs.db
+Project-01-CNN/*.zip

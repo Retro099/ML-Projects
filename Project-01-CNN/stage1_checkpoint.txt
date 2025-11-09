@@ -1,0 +1,4 @@
+Stage 1 completed: dataset uploaded and verified.
+Train classes: 7 → ['sea', 'buildings', 'mountain', 'street', 'forest', '.ipynb_checkpoints', 'glacier']
+Test classes: 7 → ['sea', 'buildings', 'mountain', 'street', 'forest', '.ipynb_checkpoints', 'glacier']
+Image count: train 14034, test 3000

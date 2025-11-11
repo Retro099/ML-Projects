@@ -9,3 +9,4 @@ backup.ps1
 .DS_Store
 Thumbs.db
 Project-01-CNN/*.zip
+Project-01-CNN/data_sample/

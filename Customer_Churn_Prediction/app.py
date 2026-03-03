@@ -11,7 +11,9 @@ st.markdown("Telco Customer Churn Demo – Japan 2026 Portfolio")
 # Train model on startup (cached, fast)
 @st.cache_resource
 def train_model():
-    df = pd.read_csv("data_sample/Customer_Churn.csv")
+    # Robust path that works on Streamlit Cloud
+    csv_path = Path(__file__).parent / "data_sample" / "Customer_Churn.csv"
+    df = pd.read_csv(csv_path)
     df = pd.get_dummies(df, drop_first=True)
     
     X = df.drop(columns=["Churn_Yes"])

@@ -1,142 +1,82 @@
-import json, joblib, numpy as np, pandas as pd
+# app.py – Simplified & Reliable Version (pandas.get_dummies)
 import streamlit as st
-from pathlib import Path
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 
-st.set_page_config(page_title="Customer Churn Predictor", page_icon="📉", layout="centered")
+st.set_page_config(page_title="Churn Predictor", layout="centered")
+st.title("🔥 Customer Churn Predictor")
+st.markdown("Telco Customer Churn Demo – Japan 2026 Portfolio")
 
-ARTIFACTS_DIR = Path(__file__).resolve().parent / "artifacts"
-DATA_PATH     = Path(__file__).resolve().parent / "data_sample" / "Customer_Churn.csv"
-METRICS_JSON  = Path(__file__).resolve().parent / "results" / "metrics" / "metrics_deploy.json"
-
+# Train model on startup (cached, fast)
 @st.cache_resource
-def load_pipeline():
-    pipe = joblib.load(ARTIFACTS_DIR / "churn_pipeline.joblib")
-    return pipe
+def train_model():
+    df = pd.read_csv("data_sample/Customer_Churn.csv")
+    df = pd.get_dummies(df, drop_first=True)
+    
+    X = df.drop(columns=["Churn_Yes"])
+    y = df["Churn_Yes"]
+    
+    model = LogisticRegression(max_iter=500, random_state=42)
+    model.fit(X, y)  # full data for demo
+    
+    return model, X.columns.tolist()
 
-@st.cache_data
-def load_manifest():
-    with open(ARTIFACTS_DIR / "manifest.json") as f:
-        return json.load(f)
+model, feature_cols = train_model()
+st.success("✅ Model ready!")
 
-@st.cache_data
-def load_metrics():
-    try:
-        with open(METRICS_JSON) as f:
-            return json.load(f)
-    except Exception:
-        return None
+# Simple form
+col1, col2 = st.columns(2)
 
-@st.cache_data
-def load_data_preview():
-    try:
-        df = pd.read_csv(DATA_PATH)
-        return df
-    except Exception:
-        return None
+with col1:
+    tenure = st.number_input("Tenure (months)", 0, 72, 24)
+    monthly_charges = st.number_input("Monthly Charges", 0.0, 200.0, 70.0)
+    total_charges = st.number_input("Total Charges", 0.0, 10000.0, 1500.0)
+    senior = st.selectbox("Senior Citizen", ["No", "Yes"])
+    partner = st.selectbox("Partner", ["No", "Yes"])
+    dependents = st.selectbox("Dependents", ["No", "Yes"])
 
-pipe = load_pipeline()
-manifest = load_manifest()
-metrics = load_metrics()
-df_preview = load_data_preview()
+with col2:
+    contract = st.selectbox("Contract", ["Month-to-month", "One year", "Two year"])
+    paperless = st.selectbox("Paperless Billing", ["No", "Yes"])
+    internet = st.selectbox("Internet Service", ["No", "DSL", "Fiber optic"])
+    tech_support = st.selectbox("Tech Support", ["No", "Yes"])
+    payment = st.selectbox("Payment Method", ["Electronic check", "Mailed check", "Bank transfer (automatic)", "Credit card (automatic)"])
 
-num_cols = manifest.get("columns", {}).get("numeric", [])
-cat_cols = manifest.get("columns", {}).get("categorical", [])
+if st.button("Predict Churn", type="primary"):
+    input_row = {
+        "tenure": tenure,
+        "MonthlyCharges": monthly_charges,
+        "TotalCharges": total_charges,
+        "SeniorCitizen": 1 if senior == "Yes" else 0,
+        "Partner_Yes": 1 if partner == "Yes" else 0,
+        "Dependents_Yes": 1 if dependents == "Yes" else 0,
+        "Contract_One year": 1 if contract == "One year" else 0,
+        "Contract_Two year": 1 if contract == "Two year" else 0,
+        "PaperlessBilling_Yes": 1 if paperless == "Yes" else 0,
+        "InternetService_Fiber optic": 1 if internet == "Fiber optic" else 0,
+        "InternetService_No": 1 if internet == "No" else 0,
+        "TechSupport_Yes": 1 if tech_support == "Yes" else 0,
+        "PaymentMethod_Electronic check": 1 if payment == "Electronic check" else 0,
+    }
+    
+    df_input = pd.DataFrame([input_row])
+    
+    # Add missing columns with 0
+    for col in feature_cols:
+        if col not in df_input.columns:
+            df_input[col] = 0
+    
+    df_input = df_input[feature_cols]
+    
+    prob = model.predict_proba(df_input)[0][1]
+    
+    st.subheader("Result")
+    st.metric("Churn Probability", f"{prob:.1%}")
+    
+    if prob >= 0.5:
+        st.error("**High Risk** → Recommend immediate retention action")
+    else:
+        st.success("**Low Risk** → Customer likely to stay")
 
-st.title("Customer Churn Prediction")
-st.caption("Logistic Regression pipeline • unified preprocessing + model")
-
-# Sidebar: deployment metrics
-with st.sidebar:
-    st.header("Model Snapshot")
-    st.write(f"Artifact: `{manifest.get('artifact', 'N/A')}`")
-    st.write(f"scikit-learn: `{manifest.get('sklearn_version', 'N/A')}`")
-    if metrics:
-        st.metric("Accuracy", f"{metrics.get('accuracy', 0):.2f}")
-        st.metric("Recall (Yes)", f"{metrics.get('recall', 0):.2f}")
-        st.metric("Precision (Yes)", f"{metrics.get('precision', 0):.2f}")
-        st.metric("F1 (Yes)", f"{metrics.get('f1', 0):.2f}")
-    st.markdown("---")
-    threshold = st.slider("Decision threshold", 0.10, 0.90, 0.50, 0.01)
-
-# Helper: infer categorical choices
-def infer_cat_choices(col):
-    if df_preview is not None and col in df_preview.columns:
-        vals = df_preview[col].dropna().unique().tolist()
-        vals = [v for v in vals if v != ""]
-        if len(vals) > 0:
-            return sorted(map(str, vals))
-    # fallback: try encoder categories
-    try:
-        pre = pipe.named_steps.get("preprocessor", None)
-        if pre and hasattr(pre, "transformers_"):
-            for name, trans, cols in pre.transformers_:
-                if hasattr(trans, "categories_") and col in cols:
-                    idx = cols.index(col)
-                    return list(map(str, trans.categories_[idx].tolist()))
-    except Exception:
-        pass
-    return ["Unknown"]
-
-# Helper: infer numeric min/max
-def infer_num_range(col):
-    if df_preview is not None and col in df_preview.columns:
-        s = pd.to_numeric(df_preview[col], errors="coerce").dropna()
-        if s.size:
-            lo, hi = float(np.nanpercentile(s, 1)), float(np.nanpercentile(s, 99))
-            if lo == hi:
-                hi = lo + 1.0
-            return lo, hi
-    return 0.0, 100000.0
-
-# Build input UI
-st.subheader("Inputs")
-cols_layout = st.columns(2)
-
-inputs = {}
-
-# numeric
-for i, col in enumerate(num_cols):
-    lo, hi = infer_num_range(col)
-    step = max((hi - lo) / 100.0, 0.01)
-    with cols_layout[i % 2]:
-        val = st.number_input(col, value=float((lo + hi) / 2.0), min_value=float(lo), max_value=float(hi), step=float(step))
-    inputs[col] = val
-
-# categorical
-for i, col in enumerate(cat_cols):
-    choices = infer_cat_choices(col)
-    with cols_layout[i % 2]:
-        val = st.selectbox(col, options=choices, index=0)
-    inputs[col] = val
-
-# Assemble single-row DataFrame as raw features
-X_row = pd.DataFrame([inputs])
-
-# Detect positive class index robustly
-def positive_index(model):
-    classes = getattr(model, "classes_", None)
-    if classes is None:
-        return 1
-    # prefer 'Yes' if present, else max class
-    if "Yes" in classes: 
-        return int(np.where(classes == "Yes")[0][0])
-    try:
-        return int(np.argmax(classes))
-    except Exception:
-        return 1
-
-if st.button("Predict"):
-    try:
-        probas = pipe.predict_proba(X_row)[0]
-        pos_idx = positive_index(pipe.named_steps["model"])
-        proba = float(probas[pos_idx])
-        label = "Likely to Churn" if proba >= threshold else "Not Likely to Churn"
-        st.metric("Churn Probability", f"{proba:.2%}")
-        st.write(label)
-        st.progress(min(max(proba, 0.0), 1.0))
-        st.caption("Decision uses the threshold in the sidebar.")
-    except Exception as e:
-        st.error(f"Prediction failed: {e}")
-
-st.markdown("---")
-st.caption("Tip: adjust the decision threshold based on business costs of false positives vs false negatives.")
+st.caption("Simplified version • Ready for Streamlit Cloud • Japan 2026 Portfolio")

@@ -1,6 +1,7 @@
-# app.py – Simplified & Reliable Version (pandas.get_dummies)
+# app.py – FINAL Streamlit Cloud Ready Version (March 2026)
 import streamlit as st
 import pandas as pd
+from pathlib import Path
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
@@ -20,14 +21,14 @@ def train_model():
     y = df["Churn_Yes"]
     
     model = LogisticRegression(max_iter=500, random_state=42)
-    model.fit(X, y)  # full data for demo
+    model.fit(X, y)
     
     return model, X.columns.tolist()
 
 model, feature_cols = train_model()
 st.success("✅ Model ready!")
 
-# Simple form
+# Form
 col1, col2 = st.columns(2)
 
 with col1:
@@ -63,12 +64,9 @@ if st.button("Predict Churn", type="primary"):
     }
     
     df_input = pd.DataFrame([input_row])
-    
-    # Add missing columns with 0
     for col in feature_cols:
         if col not in df_input.columns:
             df_input[col] = 0
-    
     df_input = df_input[feature_cols]
     
     prob = model.predict_proba(df_input)[0][1]

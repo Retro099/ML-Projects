@@ -1,10 +1,35 @@
 {
-  "python_version": "1.6.0",
+  "sklearn_version": "1.6.1",
+  "artifact_path": "../artifacts/churn_pipeline.joblib",
+  "numeric_features": [
+    "SeniorCitizen",
+    "tenure",
+    "MonthlyCharges"
+  ],
+  "categorical_features": [
+    "customerID",
+    "gender",
+    "Partner",
+    "Dependents",
+    "PhoneService",
+    "MultipleLines",
+    "InternetService",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "Contract",
+    "PaperlessBilling",
+    "PaymentMethod",
+    "TotalCharges"
+  ],
   "metrics": {
     "accuracy": 0.7963094393186657,
     "precision": 0.6346749226006192,
     "recall": 0.5481283422459893,
     "f1": 0.5882352941176471
   },
-  "notes": "Rebuilt inside Streamlit Cloud"
+  "notes": "Version-aligned production export – ready for deployment"
 }

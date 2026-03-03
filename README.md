@@ -1,61 +1,51 @@
-# Customer Churn Prediction
+# 🔥 Customer Churn Prediction
 
-## Project Overview
-This project predicts the likelihood of customer churn using historical data.
-It helps businesses identify at-risk customers and plan retention measures.
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.6-orange)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Portfolio%20Ready-success)
 
-## Objective
-Build a machine learning model that predicts churn with useful accuracy and recall.
-Model: Logistic Regression
-Dataset: Bank Customer Data (sample anonymized)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Retro099/ML-Projects/blob/main/Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb)
 
-## Methodology
-1. Data Preprocessing: missing values, categorical encoding, feature scaling
-2. EDA: correlations, churn trends, demographic insights
-3. Modeling: compared several classifiers, finalized logistic regression
-4. Evaluation Metrics: Accuracy, Recall, Precision, F1-score
+## 🚀 Live Demo
+**[Try the Churn Predictor here](https://ml-projects-njqzlxkffdz9kzztmaszak.streamlit.app/)**
 
-## Results
-| Metric | Value |
-|--------|--------|
-| Accuracy | 0.82 |
-| Recall | 0.57 |
-| Precision | 0.65 |
-| F1 Score | 0.60 |
+---
 
-All metrics are stored in results/metrics/metrics.json.
+## 🧠 Project Overview
+End-to-end churn prediction model using Telco customer data.  
+Helps businesses target retention efforts on high-risk customers.
 
-## Visuals
-![Confusion Matrix](Customer_Churn_Prediction/assets/FINAL_CONFUSION_MATRIX.png)
-![Random Forest](Customer_Churn_Prediction/assets/RANDOM_FOREST_CONFUSION_MATRIX.png)
+**Final Model**: Logistic Regression Pipeline  
+**Dataset**: ~7,000 Telco records  
+**Key Metrics**: Accuracy ~82%, Recall ~57%
 
-## Business Insights
-- Most churned customers had lower balance and shorter tenure.
-- Focus retention campaigns on customers aged 30-45 with 1-3 products.
+## 📊 Results Summary
+| Metric    | Value | Notes                          |
+|-----------|-------|--------------------------------|
+| Accuracy  | 0.82  | Overall correctness            |
+| Recall    | 0.57  | Churn detection rate (priority)|
+| Precision | 0.65  | Trust in positive predictions  |
+| F1 Score  | 0.60  | Balance precision & recall     |
 
-## Project Structure
-ML-Projects/
-  └── Customer_Churn_Prediction/
-      ├── notebooks/
-      ├── src/
-      ├── data_sample/
-      ├── results/
-      │   ├── metrics/
-      │   └── assets/
-      └── README.md
+## 🖼️ Visuals
+![Final Confusion Matrix](./assets/FINAL_CONFUSION_MATRIX.png)
 
-## Tech Stack
-Python, Pandas, Scikit-learn, Matplotlib, SHAP
+## 🧮 Business Insights
+- Strongest churn drivers: high monthly charges, short tenure, low balance  
+- Target: 30–45 age group with 1–3 products
 
-## How to Run
-1. Clone repo
-2. Open notebook in Colab or local Jupyter
-3. Run all cells end-to-end
+## 日本語概要 (Japanese Summary)
+テレコ顧客データを用いた離職予測モデルを構築しました。  
+精度82%、再現率57%を達成。主な離職要因は高額料金・短期間契約です。  
+データ前処理からモデル評価、ビジネスインサイトまでエンドツーエンド実装済み。
 
-## Outputs
-- Metrics JSON
-- Visual charts and SHAP plots
-- Trained model (optional)
+## ▶️ How to Run
+**Colab**: Click badge above  
+**Local**: `streamlit run app.py`
 
-## Version
-v1.0 - Stage 10 (Final Documentation and Polish)
+## 🔄 Next Steps
+- Add SHAP explanations  
+- Periodic retraining
+
+All artifacts in `artifacts/`. All visuals in `assets/`.

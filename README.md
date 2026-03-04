@@ -29,7 +29,7 @@ Helps businesses target retention efforts on high-risk customers.
 | F1 Score  | 0.60  | Balance precision & recall     |
 
 ## 🖼️ Visuals
-![Final Confusion Matrix](./assets/FINAL_CONFUSION_MATRIX.png)
+![Final Confusion Matrix](Customer_Churn_Prediction/assets/FINAL_CONFUSION_MATRIX.png)
 
 ## 🧮 Business Insights
 - Strongest churn drivers: high monthly charges, short tenure, low balance  

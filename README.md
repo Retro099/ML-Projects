@@ -1,51 +1,63 @@
-# 🔥 Customer Churn Prediction
+# ML-Projects | CodeForge Portfolio
 
-![Python](https://img.shields.io/badge/Python-3.12-blue)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-1.6-orange)
-![License: MIT](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-Portfolio%20Ready-success)
-
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Retro099/ML-Projects/blob/main/Customer_Churn_Prediction/notebooks/Customer_Churn_Real.ipynb)
-
-## 🚀 Live Demo
-**[Try the Churn Predictor here](https://ml-projects-njqzlxkffdz9kzztmaszak.streamlit.app/)**
+**AI/ML Engineer Portfolio**  
+Python | Scikit-learn | PyTorch | Hugging Face  
+Targeting mid-level roles in Japan (Human Resocia / Pasona)
 
 ---
 
-## 🧠 Project Overview
-End-to-end churn prediction model using Telco customer data.  
-Helps businesses target retention efforts on high-risk customers.
+### 📌 プロジェクト概要 (Japanese Summary)
+日本語対応の機械学習ポートフォリオです。金融領域における実践的なモデル構築経験と、最新のNLP技術を活用した開発をまとめています。ビジネス価値を重視したクリーンなコードと再現性を徹底しています。
 
-**Final Model**: Logistic Regression Pipeline  
-**Dataset**: ~7,000 Telco records  
-**Key Metrics**: Accuracy ~82%, Recall ~57%
+---
 
-## 📊 Results Summary
-| Metric    | Value | Notes                          |
-|-----------|-------|--------------------------------|
-| Accuracy  | 0.82  | Overall correctness            |
-| Recall    | 0.57  | Churn detection rate (priority)|
-| Precision | 0.65  | Trust in positive predictions  |
-| F1 Score  | 0.60  | Balance precision & recall     |
+### ✅ Completed Projects
 
-## 🖼️ Visuals
-![Final Confusion Matrix](Customer_Churn_Prediction/assets/FINAL_CONFUSION_MATRIX.png)
+#### 1. Customer Churn Prediction
+**Status:** ✅ Completed & Live  
+**Duration:** 2 days | **Tech:** Scikit-learn, Streamlit, Pandas  
 
-## 🧮 Business Insights
-- Strongest churn drivers: high monthly charges, short tenure, low balance  
-- Target: 30–45 age group with 1–3 products
+- End-to-end ML pipeline with production-ready artifact  
+- Interactive Streamlit web application  
+- Strong business insights and detailed Japanese documentation  
 
-## 日本語概要 (Japanese Summary)
-テレコ顧客データを用いた離職予測モデルを構築しました。  
-精度82%、再現率57%を達成。主な離職要因は高額料金・短期間契約です。  
-データ前処理からモデル評価、ビジネスインサイトまでエンドツーエンド実装済み。
+**Live Demo:** [Streamlit App](https://ml-projects-njqzlxkffdz9kzztmaszak.streamlit.app/)
 
-## ▶️ How to Run
-**Colab**: Click badge above  
-**Local**: `streamlit run app.py`
+---
 
-## 🔄 Next Steps
-- Add SHAP explanations  
-- Periodic retraining
+#### 2. Credit Card Fraud Detection
+**Status:** ✅ Completed & Portfolio-Ready  
+**Duration:** 6 days | **Tech:** XGBoost, SHAP, Imbalanced Learning  
 
-All artifacts in `artifacts/`. All visuals in `assets/`.
+- High-recall model (Recall ≈ 0.90+) on highly imbalanced dataset  
+- SHAP-based explainability for business stakeholders  
+- Professional evaluation and Japanese summary included  
+
+**Folder:** [Credit_Card_Fraud_Detection](https://github.com/Retro099/ML-Projects/tree/main/Credit_Card_Fraud_Detection)
+
+---
+
+### 🚀 Currently in Progress
+**Japanese Sentiment Analysis (NLP)**  
+- Fine-tuning Japanese BERT models using Hugging Face + PyTorch  
+- Gradio demo + deployment on Hugging Face Hub  
+- Expected completion: March 2026
+
+---
+
+### 🛠️ Tech Stack
+- **Languages:** Python 3.10+  
+- **ML Frameworks:** PyTorch, Scikit-learn, XGBoost  
+- **NLP:** Hugging Face Transformers  
+- **Visualization:** Matplotlib, Seaborn, Plotly  
+- **Deployment:** Streamlit, Gradio, Hugging Face Spaces
+
+---
+
+**All projects follow PEP8 standards, modular structure, and pinned dependencies.**  
+Every project includes a Japanese summary and clear business impact section.
+
+---
+
+**Forge daily. The blade sharpens with every strike.**  
+日本でのキャリアを目指して、日々研鑽を続けています。

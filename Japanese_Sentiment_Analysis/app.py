@@ -2,8 +2,8 @@ import streamlit as st
 from transformers import pipeline
 
 st.set_page_config(page_title="Japanese Sentiment", page_icon="🇯🇵", layout="centered")
-st.title("🇯🇵 Japanese Sentiment Analysis")
-st.caption("Day 4 Production Model – Deployed on Streamlit Cloud")
+st.title("Japanese Sentiment Analysis")
+st.caption("Production Model – Deployed on Streamlit Cloud")
 
 @st.cache_resource(show_spinner="Loading model...")
 def load_model():

@@ -1,15 +1,14 @@
 import streamlit as st
 from transformers import pipeline
-from pathlib import Path
 
 st.set_page_config(page_title="Japanese Sentiment", page_icon="🇯🇵", layout="centered")
 st.title("🇯🇵 Japanese Sentiment Analysis")
-st.caption("Day 3 Production Model – Ready for Streamlit Cloud")
+st.caption("Day 4 Production Model – Deployed on Streamlit Cloud")
 
 @st.cache_resource
 def load_model():
     return pipeline("sentiment-analysis", 
-                    model="cl-tohoku/bert-base-japanese-v2", 
+                    model="Retro099/japanese-sentiment-analysis-v1",
                     device=0 if st.runtime.exists("cuda") else -1)
 
 classifier = load_model()

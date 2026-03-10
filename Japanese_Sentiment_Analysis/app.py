@@ -5,11 +5,15 @@ st.set_page_config(page_title="Japanese Sentiment", page_icon="🇯🇵", layout
 st.title("🇯🇵 Japanese Sentiment Analysis")
 st.caption("Day 4 Production Model – Deployed on Streamlit Cloud")
 
-@st.cache_resource
+@st.cache_resource(show_spinner="Loading model...")
 def load_model():
-    return pipeline("sentiment-analysis", 
-                    model="Retro099/japanese-sentiment-analysis-v1",
-                    device=0 if st.runtime.exists("cuda") else -1)
+    try:
+        return pipeline("sentiment-analysis", 
+                        model="Retro099/japanese-sentiment-analysis-v1",
+                        device=-1)  # CPU only (Streamlit Cloud)
+    except Exception as e:
+        st.error(f"Model load failed: {str(e)}")
+        st.stop()
 
 classifier = load_model()
 

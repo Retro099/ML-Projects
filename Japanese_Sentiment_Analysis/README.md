@@ -17,15 +17,6 @@
 - Production-ready Streamlit Cloud deployment
 - Clean code, professional documentation, and deployment from Day 1
 
-
-## 📁 Project Structure
-Japanese_Sentiment_Analysis/
-├── notebooks/
-├── assets/
-├── app.py
-├── requirements.txt
-└── README.md
-
 ## Tech Stack
 - PyTorch + Hugging Face Transformers
 - Gradio & Streamlit Cloud

@@ -39,11 +39,12 @@ Full details & column info: [`artifacts/manifest.json`](./artifacts/manifest.jso
 - Action: Proactive offers on top ~20% predicted risk → reduces revenue loss efficiently
 
 ## 日本語概要 (Japanese Summary)
-銀行顧客データを用いた離職予測プロジェクトです。  
-ロジスティック回帰パイプラインを採用し、精度82%、再現率57%を達成。  
-主な離職要因は高額料金・短期間契約・低残高。  
-30-45歳、1-3商品保有顧客への保持施策を提案。  
-データ前処理からモデル評価、ビジネスインサイトまでエンドツーエンド実装。
+顧客離脱予測プロジェクト
+通信事業者の顧客データを用いた解約予測モデルを構築しました。
+ロジスティック回帰パイプラインを採用し、精度80%、再現率55%を達成。
+主な解約要因は高額月額料金・短期間契約・PaperlessBilling利用と判明。
+30-45歳層およびMonth-to-month契約顧客への保持施策（割引キャンペーン、サポート強化）を提案。
+データ前処理からモデル評価、Streamlitデモまでエンドツーエンド実装済みです。
 
 ## ▶️ How to Run
 **Colab (recommended)**: Click badge above

@@ -31,3 +31,25 @@ V14とV17が不正取引の主要ドライバーであることがSHAP解析で�
 深刻なクラス不均衡のクレジットカード取引データに対し、高再現率の不正検知モデルを構築しました。  
 XGBoost + SHAPにより、再現率0.92を達成し、V14/V17が不正の主要指標であることを解明。  
 偽陰性による損失を大幅に低減し、金融機関の信頼性向上に貢献します。
+
+## 🚀 Production Deployment (Docker)
+
+### How to run locally
+```bash
+docker compose up --build
+```
+
+### How to run Locally
+```bash
+python -m pytest tests/test_model.py -v
+```
+
+### Production-ready features
+Pinned dependencies (scikit-learn==1.6.1)
+Unit tests included
+Single predict.py endpoint ready for API
+Model loaded from artifacts/fraud_model_v1.joblib
+High-recall XGBoost + SHAP explainability
+
+## 日本語概要 (Production版)
+不均衡なクレジットカード不正検知データに対し、高再現率のXGBoostモデルを構築（再現率0.92、PR-AUC 0.85）。SHAP解析でV14/V17が主要ドライバーと判明。Dockerコンテナ + ユニットテスト完備で本番即運用可能。銀行実務レベルのケーススタディです。

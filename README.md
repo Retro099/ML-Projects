@@ -38,7 +38,7 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona)
 
 **Live Demo:** Run `docker compose up fraud-web` → http://localhost:8501  
 
-**Japanese Summary**  
+### 📌Japanese Summary 
 不均衡なクレジットカード不正検知データに対し、高再現率XGBoostモデルを構築。再現率0.92以上、SHAPでV14/V17が主要ドライバーと判明。Docker + Streamlit完備で本番即運用可能。銀行実務レベルのケーススタディです。
 ---
 
@@ -61,8 +61,3 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona)
 
 **All projects follow PEP8 standards, modular structure, and pinned dependencies.**  
 Every project includes a Japanese summary and clear business impact section.
-
----
-
-**Forge daily. The blade sharpens with every strike.**  
-日本でのキャリアを目指して、日々研鑽を続けています。

@@ -40,6 +40,7 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona)
 
 ### 📌Japanese Summary 
 不均衡なクレジットカード不正検知データに対し、高再現率XGBoostモデルを構築。再現率0.92以上、SHAPでV14/V17が主要ドライバーと判明。Docker + Streamlit完備で本番即運用可能。銀行実務レベルのケーススタディです。
+
 ---
 
 ### 🚀 Currently in Progress

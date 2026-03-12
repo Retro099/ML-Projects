@@ -25,16 +25,21 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona)
 
 ---
 
-#### 2. Credit Card Fraud Detection
-**Status:** ✅ Completed & Portfolio-Ready  
-**Duration:** 6 days | **Tech:** XGBoost, SHAP, Imbalanced Learning  
+#### 2. Credit Card Fraud Detection  
+**Status:** ✅ COMPLETED & PRODUCTION-READY  
+**Duration:** 7 days (Docker sprint)  
 
-- High-recall model (Recall ≈ 0.90+) on highly imbalanced dataset  
-- SHAP-based explainability for business stakeholders  
-- Professional evaluation and Japanese summary included  
+**Key Achievements**  
+- High-recall XGBoost (recall 0.92, PR-AUC 0.85)  
+- SHAP explainability (V14/V17 main drivers)  
+- Docker container + Streamlit live demo  
+- Unit tests + pinned dependencies  
+- Japanese summary + business insights  
 
-**Folder:** [Credit_Card_Fraud_Detection](https://github.com/Retro099/ML-Projects/tree/main/Credit_Card_Fraud_Detection)
+**Live Demo:** Run `docker compose up fraud-web` → http://localhost:8501  
 
+**Japanese Summary**  
+不均衡なクレジットカード不正検知データに対し、高再現率XGBoostモデルを構築。再現率0.92以上、SHAPでV14/V17が主要ドライバーと判明。Docker + Streamlit完備で本番即運用可能。銀行実務レベルのケーススタディです。
 ---
 
 ### 🚀 Currently in Progress

@@ -7,7 +7,6 @@ RUN pip install --no-cache-dir -r requirements_fraud.txt
 
 COPY predict.py .
 COPY artifacts/fraud_model_v1.joblib ./artifacts/
-COPY notebooks/Credit_Card_Fraud.ipynb ./notebooks/   # optional
 
 EXPOSE 8080
 

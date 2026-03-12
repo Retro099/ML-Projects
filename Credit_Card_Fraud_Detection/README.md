@@ -53,3 +53,16 @@ High-recall XGBoost + SHAP explainability
 
 ## 日本語概要 (Production版)
 不均衡なクレジットカード不正検知データに対し、高再現率のXGBoostモデルを構築（再現率0.92、PR-AUC 0.85）。SHAP解析でV14/V17が主要ドライバーと判明。Dockerコンテナ + ユニットテスト完備で本番即運用可能。銀行実務レベルのケーススタディです。
+
+## 🎯 Final Production Status
+
+- ✅ XGBoost model with recall 0.92 + PR-AUC 0.85  
+- ✅ SHAP explainability (V14/V17 strongest drivers)  
+- ✅ Docker + dual services (CLI + Streamlit demo)  
+- ✅ Unit tests passing  
+- ✅ Clean requirements + .dockerignore  
+- ✅ Japanese summary for recruiters
+
+**Live Demo:** http://localhost:8501 (run `docker compose up fraud-web`)
+
+**Deployment** – this shows real production thinking for Japanese fintech/bank clients.

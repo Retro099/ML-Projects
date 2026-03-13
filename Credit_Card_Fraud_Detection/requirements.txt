@@ -1,11 +1,7 @@
-numpy
+streamlit
 pandas
+numpy
 scikit-learn==1.6.1
 xgboost
-lightgbm
-imbalanced-learn
-shap
 joblib
-matplotlib
-seaborn
-streamlit
+lightgbm

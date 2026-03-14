@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import joblib
 from pathlib import Path
 
 st.set_page_config(page_title="Fraud Detector", page_icon="🚨", layout="centered")
@@ -11,7 +12,6 @@ COLUMNS = ["Time", "Amount"] + [f"V{i}" for i in range(1, 29)]
 
 @st.cache_resource
 def load_model():
-    import joblib
     MODEL_PATH = Path("artifacts/fraud_model_v1.joblib")
     return joblib.load(MODEL_PATH)
 

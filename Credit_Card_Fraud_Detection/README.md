@@ -65,4 +65,6 @@ High-recall XGBoost + SHAP explainability
 
 **Live Demo:** http://localhost:8501 (run `docker compose up fraud-web`)
 
+**Live Demo (Streamlit Cloud):** [https://ml-projects-credit-card-fraud-detection.streamlit.app/]
+
 **Deployment** – this shows real production thinking for Japanese fintech/bank clients.

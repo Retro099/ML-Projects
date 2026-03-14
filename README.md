@@ -2,12 +2,7 @@
 
 **AI/ML Engineer Portfolio**  
 Python | Scikit-learn | PyTorch | Hugging Face  
-Targeting mid-level roles in Japan (Human Resocia / Pasona)
-
----
-
-### 📌 プロジェクト概要 (Japanese Summary)
-日本語対応の機械学習ポートフォリオです。金融領域における実践的なモデル構築経験と、最新のNLP技術を活用した開発をまとめています。ビジネス価値を重視したクリーンなコードと再現性を徹底しています。
+Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)
 
 ---
 
@@ -36,10 +31,8 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona)
 - Unit tests + pinned dependencies  
 - Japanese summary + business insights  
 
-**Live Demo:** Run `docker compose up fraud-web` → http://localhost:8501  
-
-### 📌Japanese Summary 
-不均衡なクレジットカード不正検知データに対し、高再現率XGBoostモデルを構築。再現率0.92以上、SHAPでV14/V17が主要ドライバーと判明。Docker + Streamlit完備で本番即運用可能。銀行実務レベルのケーススタディです。
+**Live Demo:** Run `docker compose up fraud-web` → http://localhost:8501
+**Live Demo (Streamlit Cloud):** [https://ml-projects-credit-card-fraud-detection.streamlit.app/]  
 
 ---
 
@@ -62,3 +55,6 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona)
 
 **All projects follow PEP8 standards, modular structure, and pinned dependencies.**  
 Every project includes a Japanese summary and clear business impact section.
+
+**日本就業に向けたポートフォリオ概要**  
+日本でのデータサイエンティスト / MLエンジニア就業を目指してポートフォリオを強化中。在留資格取得手続き中、2025年6月にJLPT N3受験予定。初回面談は英語メインで対応可能。Docker本番運用・SHAP説明性・日本語BERTファインチューニングを強みとするプロジェクト群です。

@@ -36,20 +36,19 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)
 
 ---
 
-### 🚀 Currently in Progress
-**Japanese Sentiment Analysis (NLP)**  
-- Fine-tuning Japanese BERT models using Hugging Face + PyTorch  
-- Gradio demo + deployment on Hugging Face Hub  
-- Expected completion: March 2026
+#### 3. Japanese Sentiment Analysis (NLP)  
+**Status:** ✅ COMPLETED & PORTFOLIO-READY  
+**Duration:** 5 days  
 
----
+**Key Achievements**  
+- Fine-tuned Japanese BERT (cl-tohoku/bert-base-japanese-v2) with 3-class sentiment  
+- Production deployment on Gradio (public link) + Streamlit Cloud (CPU-optimized)  
+- Model pushed to Hugging Face Hub (Retro099/japanese-sentiment-analysis-v1)  
+- Professional assets: confusion matrix, Japanese summary, requirements_nlp.txt  
 
-### 🛠️ Tech Stack
-- **Languages:** Python 3.10+  
-- **ML Frameworks:** PyTorch, Scikit-learn, XGBoost  
-- **NLP:** Hugging Face Transformers  
-- **Visualization:** Matplotlib, Seaborn, Plotly  
-- **Deployment:** Streamlit, Gradio, Hugging Face Spaces
+**Live Demo:** Gradio → https://f50c787d7b105f7bf9.gradio.live/  
+**Streamlit Cloud:** [https://cx7v54eehcppwnarlaplxt.streamlit.app/]  
+**Model on HF Hub:** https://huggingface.co/Retro099/japanese-sentiment-analysis-v1
 
 ---
 

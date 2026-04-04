@@ -17,6 +17,8 @@ Identifies high-risk customers for targeted retention campaigns.
 **Dataset**: ~10,000 anonymized records  
 **Key Metrics**: Accuracy ~82%, Recall ~57% (prioritizes catching actual churners)
 
+**Live Demo:** [Streamlit App](https://ml-projects-njqzlxkffdz9kzztmaszak.streamlit.app/)
+
 ## 📊 Results Summary
 
 | Metric    | Value | Notes                          |

@@ -32,6 +32,7 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)
 - Japanese summary + business insights  
 
 **Live Demo:** Run `docker compose up fraud-web` → http://localhost:8501 
+
 **Live Demo (Streamlit Cloud):** [https://ml-projects-credit-card-fraud-detection.streamlit.app/]  
 
 ---

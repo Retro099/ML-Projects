@@ -57,4 +57,4 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)
 Every project includes a Japanese summary and clear business impact section.
 
 **日本就業に向けたポートフォリオ概要**  
-日本でのデータサイエンティスト / MLエンジニア就業を目指してポートフォリオを強化中。在留資格取得手続き中、2025年6月にJLPT N3受験予定。初回面談は英語メインで対応可能。Docker本番運用・SHAP説明性・日本語BERTファインチューニングを強みとするプロジェクト群です。
+日本でのデータサイエンティスト / MLエンジニア就業を目指してポートフォリオを強化中。在留資格取得手続き中、2026年6月にJLPT N3受験予定。初回面談は英語メインで対応可能。Docker本番運用・SHAP説明性・日本語BERTファインチューニングを強みとするプロジェクト群です。

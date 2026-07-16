@@ -1,0 +1,36 @@
+# Core
+numpy>=1.26.0,<2.0.0
+pandas==2.2.2
+python-dotenv==1.0.1
+tqdm==4.66.5
+pydantic>=2.0.0
+
+# PDF Processing
+pymupdf==1.24.9
+
+# Embeddings & Vector Store
+sentence-transformers==3.1.1
+chromadb==0.5.5
+
+# LLM
+groq==0.9.0
+
+# Backend (FastAPI)
+fastapi==0.112.2
+uvicorn[standard]==0.30.6
+requests==2.32.3
+
+# Frontend
+streamlit==1.37.1
+
+# Evaluation (for ragas_evaluation.ipynb)
+# Note: These versions are intentionally pinned for compatibility with ragas
+ragas==0.1.10
+langchain==0.2.16
+langchain-community==0.2.16
+langchain-groq==0.1.9
+datasets==2.21.0
+
+# Optional (Japanese tokenization)
+fugashi==1.3.2
+unidic-lite==1.0.8

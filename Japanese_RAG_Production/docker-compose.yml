@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # FastAPI Backend
+  backend:
+    build: .
+    container_name: japanese_rag_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    volumes:
+      - ./data:/app/data
+      - ./chroma_db:/app/chroma_db
+    command: uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+
+  # Streamlit Frontend
+  frontend:
+    build: .
+    container_name: japanese_rag_frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    environment:
+      - API_URL=http://backend:8000/ask
+    volumes:
+      - ./app:/app/app
+    command: streamlit run app/streamlit_app.py --server.port=8501 --server.address=0.0.0.0

@@ -1,14 +1,8 @@
-
----
-
-```markdown
 # Japanese RAG Production System
 
 **Production-Ready Retrieval-Augmented Generation Pipeline for Japanese Documents**
 
 A modular, evaluation-aware RAG system focused on Japanese text, featuring clean architecture, real RAGAS evaluation, FastAPI backend, and a professional Streamlit interface.
-
----
 
 ## 1. Project Overview
 
@@ -21,8 +15,6 @@ Build a clean, modular, and measurable RAG pipeline that properly handles Japane
 
 - Japanese document handling is still a real differentiator for Japan-targeted roles.
 - Many portfolios stop at basic RAG tutorials. This project goes further with evaluation, API design, and production thinking.
-
----
 
 ## 2. Key Features
 

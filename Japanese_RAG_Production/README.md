@@ -58,7 +58,7 @@ Retriever (Top-K)
 Generator (Groq + Improved Prompt)
 ↓
 FastAPI Backend ←→ Streamlit Frontend
-
+```
 
 **Key Design Decisions:**
 
@@ -96,6 +96,8 @@ FastAPI Backend ←→ Streamlit Frontend
 # 1. Clone the repository
 git clone https://github.com/your-username/Japanese_RAG_Production.git
 cd Japanese_RAG_Production
+```
+
 ```
 
 # 2. Create virtual environment

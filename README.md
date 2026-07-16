@@ -10,7 +10,6 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)
 
 #### 1. Japanese RAG Production System
 **Status:** ✅ COMPLETED & PORTFOLIO-READY  
-**Duration:** 7 days | **Tech:** FastAPI, Streamlit, bge-m3, ChromaDB, RAGAS, Docker  
 
 **Key Achievements**  
 - Built a modular production-oriented RAG pipeline specialized for Japanese documents  
@@ -25,7 +24,6 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)
 
 #### 2. Credit Card Fraud Detection  
 **Status:** ✅ COMPLETED & PRODUCTION-READY  
-**Duration:** 7 days (Docker sprint)  
 
 **Key Achievements**  
 - High-recall XGBoost (recall 0.92, PR-AUC 0.85)  
@@ -40,7 +38,6 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)
 
 #### 3. Japanese Sentiment Analysis (NLP)  
 **Status:** ✅ COMPLETED & PORTFOLIO-READY  
-**Duration:** 5 days  
 
 **Key Achievements**  
 - Fine-tuned Japanese BERT (cl-tohoku/bert-base-japanese-v2) with 3-class sentiment  
@@ -56,7 +53,7 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)
 
 #### 4. Customer Churn Prediction
 **Status:** ✅ Completed & Live  
-**Duration:** 2 days | **Tech:** Scikit-learn, Streamlit, Pandas  
+**Tech:** Scikit-learn, Streamlit, Pandas  
 
 - End-to-end ML pipeline with production-ready artifact  
 - Interactive Streamlit web application  

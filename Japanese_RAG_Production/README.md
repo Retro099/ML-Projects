@@ -1,6 +1,3 @@
-**✅ Here’s the complete rewritten README** for your Japanese RAG project, following the exact structure we discussed (optimized for both India and Japan markets).
-
-You can copy and paste this directly into your `README.md`.
 
 ---
 

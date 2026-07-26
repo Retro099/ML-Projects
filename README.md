@@ -1,4 +1,4 @@
-**AI/ML Engineer Portfolio**  
+# AI/ML Engineer Portfolio
 Python | Scikit-learn | PyTorch | Hugging Face | RAG | Docker  
 Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)  
 Each project has its own pinned `requirements.txt` — see individual folders for exact dependencies and how to run.

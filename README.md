@@ -1,6 +1,7 @@
 # AI/ML Engineer Portfolio
 Python | Scikit-learn | PyTorch | Hugging Face | RAG | Docker  
-Targeting mid-level AI/ML roles (India & Japan)  
+
+Open to mid-level AI/ML roles (India & Japan)  
 Each project has its own pinned `requirements.txt` — see individual folders for exact dependencies and how to run.
 
 ---
@@ -15,7 +16,7 @@ Each project has its own pinned `requirements.txt` — see individual folders fo
 - Implemented real RAGAS evaluation (Faithfulness **0.96**, Answer Relevancy **0.76**) using actual system outputs  
 - Developed FastAPI backend + Streamlit frontend with clear separation of concerns  
 - Japanese-aware chunking + bge-m3 embeddings  
-- Full Docker support + professional Japanese technical summary  
+- Full Docker support + professional documentation  
 
 **Repository:** [Japanese_RAG_Production](./Japanese_RAG_Production)
 
@@ -29,7 +30,7 @@ Each project has its own pinned `requirements.txt` — see individual folders fo
 - SHAP explainability (V14/V17 main drivers)  
 - Docker container + Streamlit live demo  
 - Unit tests + pinned dependencies  
-- Japanese summary + business insights  
+- Business insights included  
 
 **Live Demo (Streamlit Cloud):** [https://ml-projects-credit-card-fraud-detection.streamlit.app/]  
 
@@ -42,7 +43,7 @@ Each project has its own pinned `requirements.txt` — see individual folders fo
 - Fine-tuned Japanese BERT (cl-tohoku/bert-base-japanese-v2) with 3-class sentiment  
 - Production deployment on Gradio + Streamlit Cloud (CPU-optimized)  
 - Model pushed to Hugging Face Hub (Retro099/japanese-sentiment-analysis-v1)  
-- Professional assets: confusion matrix, Japanese summary  
+- Professional assets: confusion matrix + documentation  
 
 **Live Demo:** Gradio → https://f50c787d7b105f7bf9.gradio.live/  
 **Streamlit Cloud:** [https://cx7v54eehcppwnarlaplxt.streamlit.app/]  
@@ -56,7 +57,7 @@ Each project has its own pinned `requirements.txt` — see individual folders fo
 **Key Achievements**  
 - End-to-end ML pipeline with production-ready artifact  
 - Interactive Streamlit web application  
-- Strong business insights and detailed Japanese documentation  
+- Strong business insights and documentation  
 - Accuracy 0.82 | Recall 0.57 (priority metric)
 
 **Live Demo:** [Streamlit App](https://ml-projects-njqzlxkffdz9kzztmaszak.streamlit.app/)
@@ -64,7 +65,7 @@ Each project has its own pinned `requirements.txt` — see individual folders fo
 ---
 
 **All projects follow PEP8 standards, modular structure, and pinned dependencies.**  
-Every project includes a Japanese summary and clear business impact section.
+Every project includes clear documentation and business impact section.
 
 **日本就業に向けたポートフォリオ概要**  
 日本でのデータサイエンティスト / MLエンジニア就業を目指してポートフォリオを強化中。在留資格取得手続き中、日本語はN4レベル（N3勉強中）。初回面談は英語メインで対応可能。  

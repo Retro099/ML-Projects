@@ -1,8 +1,7 @@
-# ML-Projects | CodeForge Portfolio
-
 **AI/ML Engineer Portfolio**  
-Python | Scikit-learn | PyTorch | Hugging Face | RAG  
-Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)
+Python | Scikit-learn | PyTorch | Hugging Face | RAG | Docker  
+Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)  
+Each project has its own pinned `requirements.txt` — see individual folders for exact dependencies and how to run.
 
 ---
 
@@ -52,12 +51,13 @@ Targeting mid-level roles in Japan (Human Resocia / Pasona / BizReach)
 ---
 
 #### 4. Customer Churn Prediction
-**Status:** ✅ Completed & Live  
-**Tech:** Scikit-learn, Streamlit, Pandas  
+**Status:** ✅ COMPLETED & LIVE  
 
+**Key Achievements**  
 - End-to-end ML pipeline with production-ready artifact  
 - Interactive Streamlit web application  
 - Strong business insights and detailed Japanese documentation  
+- Accuracy 0.82 | Recall 0.57 (priority metric)
 
 **Live Demo:** [Streamlit App](https://ml-projects-njqzlxkffdz9kzztmaszak.streamlit.app/)
 

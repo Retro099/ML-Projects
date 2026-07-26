@@ -1,4 +1,5 @@
 # Japanese RAG Production System
+**Status:** ✅ COMPLETED & PORTFOLIO-READY
 
 **Production-Ready Retrieval-Augmented Generation Pipeline for Japanese Documents**
 
@@ -59,6 +60,10 @@ Generator (Groq + Improved Prompt)
 ↓
 FastAPI Backend ←→ Streamlit Frontend
 ```
+
+**Business / Production notes:**
+- Real RAGAS evaluation was run on actual system outputs, not synthetic data.
+- Modular design (ingestion → Japanese-aware chunking → retrieval → generation) makes the pipeline easy to adapt to other languages or domain documents.
 
 **Key Design Decisions:**
 

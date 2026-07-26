@@ -1,12 +1,32 @@
-# Ignore local-only folders and scripts
-Backups/
-backup.ps1
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
 
-# Ignore temp and system files
-*.tmp
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment & secrets
+.env
+.venv/
+venv/
+env/
+
+# Logs & temp
 *.log
+*.tmp
 *.bak
 .DS_Store
 Thumbs.db
+
+# Project specific
+Backups/
+backup.ps1
 Project-01-CNN/*.zip
 Project-01-CNN/data_sample/

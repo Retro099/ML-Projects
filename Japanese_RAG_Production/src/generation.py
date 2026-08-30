@@ -28,6 +28,7 @@ class Generator:
 - 質問に**直接答える**ことだけに集中してください。
 - 複数のポイントがある場合は、箇点（・）で簡潔にまとめてください。
 - コンテキストにない情報は絶対に使わないでください。
+- 箇点は必ず1行に1つ。行の先頭は「・」。
 
 ### コンテキスト:
 {context_text}
@@ -41,11 +42,13 @@ class Generator:
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "あなたは簡潔で正確な回答をするアシスタントです。"},
+                    {"role": "system", 
+                     "content": "あなたは簡潔で正確な回答をするアシスタントです。"},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0.1,      # Lower temperature for more focused answers
-                max_tokens=600
+                temperature=config.TEMPERATURE,      # Lower temperature for more focused answers
+                max_tokens=config.MAX_TOKENS,
+                reasoning_effort="none",
             )
             return response.choices[0].message.content.strip()
 

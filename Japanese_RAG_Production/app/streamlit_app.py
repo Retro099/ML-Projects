@@ -3,6 +3,7 @@
 import streamlit as st
 import requests
 import time
+import html as html_lib
 from typing import Dict, Any
 
 
@@ -62,8 +63,9 @@ def main():
                         margin-bottom: 20px;
                         font-size: 1.05rem;
                         line-height: 1.6;
+                        white-space: pre-line;
                     ">
-                        {answer}
+                        {html_lib.escape(answer)}
                     </div>
                     """,
                     unsafe_allow_html=True

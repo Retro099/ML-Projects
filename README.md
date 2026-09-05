@@ -66,8 +66,3 @@ Each project has its own pinned `requirements.txt` — see individual folders fo
 
 **All projects follow PEP8 standards, modular structure, and pinned dependencies.**  
 Every project includes clear documentation and business impact section.
-
-**日本就業に向けたポートフォリオ概要**  
-日本でのデータサイエンティスト / MLエンジニア就業を目指してポートフォリオを強化中。在留資格取得手続き中、日本語はN4レベル（N3勉強中）。初回面談は英語メインで対応可能。  
-
-特に日本語文書向けRAGシステム、Docker本番運用、SHAP説明性、日本語BERTファインチューニングを強みとするプロジェクト群です。

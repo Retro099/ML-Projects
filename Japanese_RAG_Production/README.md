@@ -7,7 +7,7 @@ A modular, evaluation-aware RAG system focused on Japanese text, featuring clean
 
 ## 1. Project Overview
 
-This project is a mid-level production-oriented RAG system designed for Japanese documents. It was built to demonstrate practical engineering skills relevant to the 2026 job market in both India and Japan.
+This project is a mid-level production-oriented RAG system designed for Japanese documents. It was built to demonstrate practical engineering skills relevant to the 2026 job market in India.
 
 **Goal:**  
 Build a clean, modular, and measurable RAG pipeline that properly handles Japanese text characteristics (no spaces, long sentences, compound words) while following production engineering practices.

@@ -1,7 +1,7 @@
 # AI/ML Engineer Portfolio
 Python | Scikit-learn | PyTorch | Hugging Face | RAG | Docker  
 
-Open to mid-level AI/ML roles. 
+Open to mid-level AI/ML roles.     
 Each project has its own pinned `requirements.txt` — see individual folders for exact dependencies and how to run.
 
 ---

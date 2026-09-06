@@ -142,8 +142,6 @@ This will start:
 
 ## 7. Evaluation Results
 
-## 7. Evaluation Results
-
 **v1 notebook** (`evaluation/ragas_evaluation.ipynb`): curated contexts, judge `llama-3.3-70b-versatile`.
 Faithfulness 0.9643 / Answer Relevancy 0.7633. Not the live stack.
 

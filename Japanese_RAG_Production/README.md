@@ -21,7 +21,7 @@ Build a clean, modular, and measurable RAG pipeline that properly handles Japane
 
 - **Japanese-aware chunking** with configurable size and overlap
 - **bge-m3 embeddings** optimized for multilingual (including Japanese) retrieval
-- **Two evals:** v1 notebook (70B judge, curated contexts) and 6 Sep live /askdump (seeevaluation/)
+- **Two evals:** v1 notebook (70B judge, curated contexts) and 6 Sep live /askdump (see evaluation/)
 - **API-first architecture** (FastAPI backend + Streamlit frontend)
 - **Professional Streamlit UI** with latency metrics, grounding status, and source citations
 - **Docker-ready** with `Dockerfile` and `docker-compose.yml`

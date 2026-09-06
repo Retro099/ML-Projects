@@ -1,5 +1,5 @@
 # Japanese RAG Production System
-**Status:** ✅ COMPLETED & PORTFOLIO-READY
+**Status:** Live demo — overlap-dense retrieval + Groq Qwen generator
 
 **Production-Ready Retrieval-Augmented Generation Pipeline for Japanese Documents**
 
@@ -21,7 +21,7 @@ Build a clean, modular, and measurable RAG pipeline that properly handles Japane
 
 - **Japanese-aware chunking** with configurable size and overlap
 - **bge-m3 embeddings** optimized for multilingual (including Japanese) retrieval
-- **Real RAGAS evaluation** using actual system outputs (not dummy data)
+- **Two evals:** v1 notebook (70B judge, curated contexts) and 6 Sep live /askdump (seeevaluation/)
 - **API-first architecture** (FastAPI backend + Streamlit frontend)
 - **Professional Streamlit UI** with latency metrics, grounding status, and source citations
 - **Docker-ready** with `Dockerfile` and `docker-compose.yml`
@@ -35,7 +35,7 @@ Build a clean, modular, and measurable RAG pipeline that properly handles Japane
 | ---------------- | ------------------------------ | -------------------------------------------------- |
 | Embeddings       | BAAI/bge-m3                    | Strong multilingual performance, good for Japanese |
 | Vector Database  | ChromaDB                       | Lightweight and easy to use for local development  |
-| LLM              | Groq (llama-3.3-70b-versatile) | Fast inference and good Japanese capability        |
+| LLM              | Groq qwen/qwen3.6-27b (reasoning_effort=none) | Live generator. llama-3.3-70b-versatile retired on Groq 16 Aug 2026        |
 | Backend          | FastAPI + Uvicorn              | Clean API layer and production readiness           |
 | Frontend         | Streamlit                      | Fast interactive demo                              |
 | Evaluation       | RAGAS                          | Industry-standard RAG metrics                      |
@@ -142,21 +142,22 @@ This will start:
 
 ## 7. Evaluation Results
 
-The system was evaluated using **real test cases** extracted from actual interactions with the pipeline.
+## 7. Evaluation Results
 
-### RAGAS Scores
+**v1 notebook** (`evaluation/ragas_evaluation.ipynb`): curated contexts, judge `llama-3.3-70b-versatile`.
+Faithfulness 0.9643 / Answer Relevancy 0.7633. Not the live stack.
 
-| Metric               | Score      | Assessment       |
-| -------------------- | ---------- | ---------------- |
-| **Faithfulness**     | **0.9643** | Excellent        |
-| **Answer Relevancy** | **0.7633** | Good (Mid-level) |
+**Live 6 Sep** (`evaluation/RESULTS_2026-09-06.md`, `ragas_live_qwen.json`):
+overlap-dense top-5 + Qwen answers. Judge `openai/gpt-oss-120b` (Qwen cannot host RAGAS on Groq free OTPM).
 
-**Interpretation:**
+| # | Faithfulness | Answer Relevancy |
+|---|---|---|
+| 4 finished factoid rows | 1.00 | — |
+| 2 long-answer rows | judge truncated | — |
+| Mean AR (6 rows) | — | ~0.62 |
 
-- **Faithfulness (0.96)**: Answers are highly grounded in the retrieved context with very low hallucination.
-- **Answer Relevancy (0.76)**: Answers are reasonably relevant. Further gains are possible through continued prompt optimization and better chunking.
-
-These scores represent a **solid mid-level result**, especially considering the evaluation was done on real system outputs.
+Retrieval check: after overlap rebuild, 楽天 Non-GAAP 1,063億円 and トリプル20 are dense rank 1.
+Hybrid BM25 and three JP rerankers (xsmall-v2, small-v2, ruri-v3-310m) were tried and **not shipped** — they saturated and dropped 1,063 from rank 1.
 
 ---
 
@@ -164,15 +165,13 @@ These scores represent a **solid mid-level result**, especially considering the 
 
 ### Current Limitations
 
-- Embedding is recomputed on every application restart (slow on low-resource machines)
 - Answer relevancy can still be improved for broader questions
 - Docker setup was prepared for production but not fully tested in a high-resource environment due to local hardware constraints
 - Limited number of documents in the current demo
 
 ### Planned Improvements
 
-- Persistent vector store to avoid re-embedding
-- Implementation of re-ranking
+- Re-ranking was tried (3 models) and rejected on the 1,063 factoid. Live retriever stays dense-only.
 - Expansion of RAGAS evaluation with more diverse test cases
 - Full Docker deployment testing and CI/CD integration
 - Further prompt and chunk quality improvements
@@ -192,11 +191,14 @@ Japanese_RAG_Production/
 │   ├── embedding_store.py
 │   ├── retrieval.py
 │   ├── generation.py
-│   └── evaluation.py
+│   
 ├── data/
 │   └── sample/
 ├── evaluation/
-│   └── ragas_evaluation.ipynb
+│   ├── ragas_evaluation.ipynb
+│   ├── ragas_live_2026-09-06.ipynb
+│   ├── ragas_live_qwen.json
+│   └── RESULTS_2026-09-06.md
 ├── api.py
 ├── Dockerfile
 ├── docker-compose.yml
@@ -215,7 +217,7 @@ Japanese_RAG_Production/
 
 - `bge-m3`埋め込みモデルと日本語を考慮したチャンキング戦略を採用
 - モジュール設計により保守性と拡張性を重視
-- 実際のシステム出力を使用したRAGAS評価を実施（Faithfulness: 0.9643 / Answer Relevancy: 0.7633）
+- 評価は2系統。旧ノートブック（70B、0.96/0.76）と、2026年9月6日のライブ出力（Faithfulness は完了4件が1.00、Answer Relevancy平均約0.62）。ライブ生成は Qwen。
 - FastAPIによるバックエンドとStreamlitによるフロントエンドを分離したAPI-firstアーキテクチャ
 
 ### 現在の成果と課題
@@ -228,7 +230,7 @@ Japanese_RAG_Production/
 
 - Dockerを活用した本番環境への展開
 - RAGAS評価の自動化
-- 回答品質のさらなる向上（Re-ranking、プロンプト改善など）
+- リランカーは試したが 1,063億円の順位が落ちたため未搭載。検索は overlap-dense のまま。
 
 本プロジェクトは、日本語文書を扱う実務的なRAGシステムの構築経験と、評価・API設計といった中級レベルのエンジニアリングスキルを証明するものです。
 

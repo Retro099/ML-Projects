@@ -9,16 +9,16 @@ Each project has its own pinned `requirements.txt` — see individual folders fo
 ### ✅ Completed Projects
 
 #### 1. Japanese RAG Production System
-**Status:** ✅ COMPLETED & PORTFOLIO-READY  
+**Status:** Live demo — overlap-dense retrieval + Groq Qwen  
 
 **Key Achievements**  
-- Built a modular production-oriented RAG pipeline specialized for Japanese documents  
-- Implemented real RAGAS evaluation (Faithfulness **0.96**, Answer Relevancy **0.76**) using actual system outputs  
-- Developed FastAPI backend + Streamlit frontend with clear separation of concerns  
-- Japanese-aware chunking + bge-m3 embeddings  
-- Full Docker support + professional documentation  
+- Modular RAG for Japanese PDFs: PyMuPDF → JP chunking (overlap 50) → bge-m3 → Chroma → FastAPI + Streamlit + Docker  
+- Live generator: Groq `qwen/qwen3.6-27b` (`reasoning_effort=none`). Old Groq 70B is retired  
+- Overlap rebuild put 楽天 Non-GAAP **1,063億円** and **トリプル20** at dense rank 1  
+- Hybrid + 3 JP rerankers tried and not shipped (they dropped the 1,063 factoid)  
+- Two evals: v1 notebook 0.96/0.76 (70B, curated contexts) vs 6 Sep live `/ask` dump (F=1.0 on 4 finished rows, AR ≈ 0.62; 2 long rows judge-truncated)  
 
-**Repository:** [Japanese_RAG_Production](./Japanese_RAG_Production)
+**Folder:** [Japanese_RAG_Production](./Japanese_RAG_Production)
 
 ---
 

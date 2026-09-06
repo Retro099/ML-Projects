@@ -56,3 +56,17 @@ secrets/
 .cache/
 *.bin
 *.safetensors
+# Local index backups and encode caches
+chroma_db_v1_no_overlap/
+*.npy
+
+# Ingest dumps — live index source, not for GitHub
+chunks_v2_overlap.jsonl
+*.jsonl
+
+# Eval pool is huge raw chunks; keep the 6-row live answers
+evaluation/smoke_pool_top20.json
+
+# Sample PDFs stay local
+data/sample/
+*.pdf

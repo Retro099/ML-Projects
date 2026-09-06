@@ -1,15 +1,11 @@
 # Japanese Sentiment Analysis (NLP) – Portfolio Project
 
 **Status:** ✅ Production-ready & Live  
-**Duration:** 5 days  
 **Model:** [Retro099/japanese-sentiment-analysis-v1](https://huggingface.co/Retro099/japanese-sentiment-analysis-v1) (Hugging Face Hub)
 
 **Live Demos:**
 - Streamlit Cloud (main demo): https://cx7v54eehcppwnarlaplxt.streamlit.app/
 - Gradio (temporary Colab share – may expire): https://f50c787d7b105f7bf9.gradio.live/
-
-## 日本語要約
-日本語のレビューやテキストに対する感情分析モデルを構築しました。Hugging Face Transformers + PyTorchを使用してBERTをファインチューニングし、Positive / Negative / Neutralの3クラス分類を実現。eコマース顧客満足度分析や自動レビュー分類に活用可能です。GradioデモとStreamlit Cloudデプロイ済みです。
 
 ## 🎯 Key Achievements
 - Fine-tuned Japanese BERT (`cl-tohoku/bert-base-japanese-v2`) for 3-class sentiment

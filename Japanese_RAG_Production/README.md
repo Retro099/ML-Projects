@@ -1,8 +1,3 @@
-Replace the whole of `Japanese_RAG_Production/README.md` with this. Do not commit yet if you want one commit for all four files — or commit this file alone. Say when it is saved and I will give Fraud next.
-
-What changed vs live: India/Japan *career* lines gone, section 10 title is 技術メモ, clone URL points at `Retro099/ML-Projects`, the broken extra ` ``` ` in Setup is fixed. Eval lock, Groq names, 1,063, rerank-rejected — all kept.
-
-```markdown
 # Japanese RAG Production System
 **Status:** Live demo — overlap-dense retrieval + Groq Qwen generator
 

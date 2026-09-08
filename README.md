@@ -1,68 +1,32 @@
 # AI/ML Engineer Portfolio
-Python | Scikit-learn | PyTorch | Hugging Face | RAG | Docker  
 
-Open to mid-level AI/ML roles.     
-Each project has its own pinned `requirements.txt` — see individual folders for exact dependencies and how to run.
+Python · PyTorch · Hugging Face · RAG · Docker · FastAPI
 
----
+Open to mid-level AI/ML roles. Each folder has its own `requirements.txt`.
 
-### ✅ Completed Projects
+### Japanese document Q&A (RAG)
 
-#### 1. Japanese RAG Production System
-**Status:** Live demo — overlap-dense retrieval + Groq Qwen  
+Ask questions against Japanese company PDFs. The system has to retrieve the right passage and not invent figures.
 
-**Key Achievements**  
-- Modular RAG for Japanese PDFs: PyMuPDF → JP chunking (overlap 50) → bge-m3 → Chroma → FastAPI + Streamlit + Docker  
-- Live generator: Groq `qwen/qwen3.6-27b` (`reasoning_effort=none`). Old Groq 70B is retired  
-- Overlap rebuild put 楽天 Non-GAAP **1,063億円** and **トリプル20** at dense rank 1  
-- Hybrid + 3 JP rerankers tried and not shipped (they dropped the 1,063 factoid)  
-- Two evals: v1 notebook 0.96/0.76 (70B, curated contexts) vs 6 Sep live `/ask` dump (F=1.0 on 4 finished rows, AR ≈ 0.62; 2 long rows judge-truncated)  
+- Japanese-aware chunking with overlap → bge-m3 → Chroma → FastAPI + Streamlit + Docker
+- After the overlap rebuild, Rakuten’s Non-GAAP operating profit (1,063億円) and the “トリプル20” AI line rank first
+- Extra rerankers were tried and left out — they pushed that profit figure down
+- Folder: [Japanese_RAG_Production](./Japanese_RAG_Production)
 
-**Folder:** [Japanese_RAG_Production](./Japanese_RAG_Production)
+### Credit card fraud
 
----
+XGBoost on a heavily imbalanced set. Fraud recall **0.92**, PR-AUC **0.85**. SHAP: V14 / V17. Docker + tests.
 
-#### 2. Credit Card Fraud Detection  
-**Status:** ✅ COMPLETED & PRODUCTION-READY  
+[Live demo](https://ml-projects-credit-card-fraud-detection.streamlit.app/) · [Folder](./Credit_Card_Fraud_Detection)
 
-**Key Achievements**  
-- High-recall XGBoost (recall 0.92, PR-AUC 0.85)  
-- SHAP explainability (V14/V17 main drivers)  
-- Docker container + Streamlit live demo  
-- Unit tests + pinned dependencies  
-- Business insights included  
+### Japanese sentiment
 
-**Live Demo (Streamlit Cloud):** [https://ml-projects-credit-card-fraud-detection.streamlit.app/]  
+Fine-tuned `cl-tohoku/bert-base-japanese-v2` (positive / neutral / negative). CPU demo + model on Hugging Face.
 
----
+[Streamlit](https://cx7v54eehcppwnarlaplxt.streamlit.app/) · [HF model](https://huggingface.co/Retro099/japanese-sentiment-analysis-v1) · [Folder](./Japanese_Sentiment_Analysis)
 
-#### 3. Japanese Sentiment Analysis (NLP)  
-**Status:** ✅ COMPLETED & PORTFOLIO-READY  
+### Customer churn
 
-**Key Achievements**  
-- Fine-tuned Japanese BERT (cl-tohoku/bert-base-japanese-v2) with 3-class sentiment  
-- Production deployment on Gradio + Streamlit Cloud (CPU-optimized)  
-- Model pushed to Hugging Face Hub (Retro099/japanese-sentiment-analysis-v1)  
-- Professional assets: confusion matrix + documentation  
+Telco churn baseline. Accuracy 0.82, recall 0.57. Live form only.
 
-**Live Demo:** Gradio → https://f50c787d7b105f7bf9.gradio.live/  
-**Streamlit Cloud:** [https://cx7v54eehcppwnarlaplxt.streamlit.app/]  
-**Model on HF Hub:** https://huggingface.co/Retro099/japanese-sentiment-analysis-v1
-
----
-
-#### 4. Customer Churn Prediction
-**Status:** ✅ COMPLETED & LIVE  
-
-**Key Achievements**  
-- End-to-end ML pipeline with production-ready artifact  
-- Interactive Streamlit web application  
-- Strong business insights and documentation  
-- Accuracy 0.82 | Recall 0.57 (priority metric)
-
-**Live Demo:** [Streamlit App](https://ml-projects-njqzlxkffdz9kzztmaszak.streamlit.app/)
-
----
-
-**All projects follow PEP8 standards, modular structure, and pinned dependencies.**  
-Every project includes clear documentation and business impact section.
+[Live demo](https://ml-projects-njqzlxkffdz9kzztmaszak.streamlit.app/) · [Folder](./Customer_Churn_Prediction)

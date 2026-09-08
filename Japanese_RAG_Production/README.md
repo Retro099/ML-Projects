@@ -1,3 +1,8 @@
+Replace the whole of `Japanese_RAG_Production/README.md` with this. Do not commit yet if you want one commit for all four files — or commit this file alone. Say when it is saved and I will give Fraud next.
+
+What changed vs live: India/Japan *career* lines gone, section 10 title is 技術メモ, clone URL points at `Retro099/ML-Projects`, the broken extra ` ``` ` in Setup is fixed. Eval lock, Groq names, 1,063, rerank-rejected — all kept.
+
+```markdown
 # Japanese RAG Production System
 **Status:** Live demo — overlap-dense retrieval + Groq Qwen generator
 
@@ -7,21 +12,21 @@ A modular, evaluation-aware RAG system focused on Japanese text, featuring clean
 
 ## 1. Project Overview
 
-This project is a mid-level production-oriented RAG system designed for Japanese documents. It was built to demonstrate practical engineering skills relevant to the 2026 job market in India.
+This project is a mid-level production-oriented RAG system designed for Japanese documents. It was built to demonstrate practical engineering skills relevant to production AI/ML work.
 
 **Goal:**  
 Build a clean, modular, and measurable RAG pipeline that properly handles Japanese text characteristics (no spaces, long sentences, compound words) while following production engineering practices.
 
 **Why this project matters:**
 
-- Japanese document handling is still a real differentiator for Japan-targeted roles.
+- Japanese document handling is harder than English RAG (no spaces, long compounds), so retrieval quality is the point of the project.
 - Many portfolios stop at basic RAG tutorials. This project goes further with evaluation, API design, and production thinking.
 
 ## 2. Key Features
 
 - **Japanese-aware chunking** with configurable size and overlap
 - **bge-m3 embeddings** optimized for multilingual (including Japanese) retrieval
-- **Two evals:** v1 notebook (70B judge, curated contexts) and 6 Sep live /askdump (see evaluation/)
+- **Two evals:** v1 notebook (70B judge, curated contexts) and 6 Sep live `/ask` dump (see evaluation/)
 - **API-first architecture** (FastAPI backend + Streamlit frontend)
 - **Professional Streamlit UI** with latency metrics, grounding status, and source citations
 - **Docker-ready** with `Dockerfile` and `docker-compose.yml`
@@ -45,7 +50,6 @@ Build a clean, modular, and measurable RAG pipeline that properly handles Japane
 
 ## 4. Architecture & Design Decisions
 ```
-
 PDF Documents
 ↓
 Document Ingestion (PyMuPDF)
@@ -59,6 +63,7 @@ Retriever (Top-K)
 Generator (Groq + Improved Prompt)
 ↓
 FastAPI Backend ←→ Streamlit Frontend
+```
 ```
 
 **Business / Production notes:**
@@ -99,11 +104,8 @@ FastAPI Backend ←→ Streamlit Frontend
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/Japanese_RAG_Production.git
-cd Japanese_RAG_Production
-```
-
-```
+git clone https://github.com/Retro099/ML-Projects.git
+cd ML-Projects/Japanese_RAG_Production
 
 # 2. Create virtual environment
 python -m venv venv
@@ -121,6 +123,7 @@ python api.py
 
 # 6. In another terminal, start Streamlit
 streamlit run app/streamlit_app.py
+```
 
 ### Production Deployment (Docker)
 
@@ -189,7 +192,7 @@ Japanese_RAG_Production/
 │   ├── embedding_store.py
 │   ├── retrieval.py
 │   ├── generation.py
-│   
+│
 ├── data/
 │   └── sample/
 ├── evaluation/
@@ -207,7 +210,7 @@ Japanese_RAG_Production/
 
 ---
 
-## 10. Japanese Summary (日本就業に向けた技術的サマリー)
+## 10. Japanese Summary（技術メモ）
 
 本プロジェクトでは、日本語文書を対象とした実用的なRAGシステムを構築しました。
 
@@ -242,5 +245,3 @@ Japanese_RAG_Production/
 - Being honest about limitations is more professional than overclaiming.
 
 ---
-
-**Note:** This project was developed with limited local computing resources. The core pipeline, evaluation, and API layer were fully implemented and tested. Docker configuration is provided for production environments with sufficient resources.

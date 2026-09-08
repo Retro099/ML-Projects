@@ -59,7 +59,7 @@ Generator (Groq + Improved Prompt)
 ↓
 FastAPI Backend ←→ Streamlit Frontend
 ```
-```
+
 
 **Business / Production notes:**
 - Real RAGAS evaluation was run on actual system outputs, not synthetic data.

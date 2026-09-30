@@ -15,7 +15,7 @@ Ask questions against Japanese company PDFs. The system has to retrieve the righ
 
 ### Credit card fraud
 
-XGBoost on a heavily imbalanced set. Fraud recall **0.92**, PR-AUC **0.85**. SHAP: V14 / V17. Docker + tests.
+XGBoost on a heavily imbalanced set. Fraud recall **0.84**, precision **0.88**, PR-AUC **0.88**. SHAP: V14 / V17. Docker + tests.
 
 [Live demo](https://ml-projects-credit-card-fraud-detection.streamlit.app/) · [Folder](./Credit_Card_Fraud_Detection)
 

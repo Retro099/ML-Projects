@@ -30,3 +30,14 @@ Backups/
 backup.ps1
 Project-01-CNN/*.zip
 Project-01-CNN/data_sample/
+# Caches, data and large weights
+.pytest_cache/
+.ruff_cache/
+data/
+*.csv
+!Customer_Churn_Prediction/data_sample/Customer_Churn.csv
+chroma_db/
+*.bin
+*.safetensors
+*.pt
+*.onnx
